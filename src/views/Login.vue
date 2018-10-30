@@ -79,7 +79,7 @@ export default {
           this.$store.dispatch('user/login', this.form)
           .then(res => {
             this.$router.push({
-              path: '/layout/home-page'
+              path: '/index'
             })
           })
         } else {
@@ -98,8 +98,7 @@ export default {
         sessionStorage.userInfo = this.form.name
         sessionStorage.passwordInfo = this.form.password
       } else {
-        sessionStorage.removeItem('userInfo')
-        sessionStorage.removeItem('passwordInfo')
+        sessionStorage.clear()
       }
     }
   }

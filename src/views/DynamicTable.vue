@@ -10,20 +10,20 @@
 </template>
 
 <script>
-import FixedTable from '../components/BaseTable/FixedTable'
-import UnfixedTable from '../components/BaseTable/UnfixedTable'
+import FixedTable from "../components/BaseTable/FixedTable";
+import UnfixedTable from "../components/BaseTable/UnfixedTable";
 
 export default {
-  name: 'DynamicTable',
+  name: "DynamicTable",
   components: {
-  	FixedTable,
-  	UnfixedTable
+    FixedTable,
+    UnfixedTable
   }
-}
+};
 </script>
 
 <style scoped>
-	.el-card {
-		margin-bottom: 20px;
-	}
+.el-card {
+  margin-bottom: 20px;
+}
 </style>

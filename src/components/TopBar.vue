@@ -35,7 +35,7 @@
                         <a href="#">
                             <el-dropdown-item command="personInfo">个人信息</el-dropdown-item>
                         </a>
-                        <a href="https://github.com/qiugu/Vue-practice" target="_blank">
+                        <a href="https://github.com/qiugu/vue-qg-ms" target="_blank">
                             <el-dropdown-item>项目仓库</el-dropdown-item>
                         </a>
                         <a href="#">
@@ -94,7 +94,7 @@ export default {
     },
     handleCommand (command) {
       if (command === 'logout') {
-        localStorage.clear()
+        sessionStorage.clear()
         bus.$emit('stopMusic')
         this.$router.push('/login')
       } else if (command === 'personInfo') {

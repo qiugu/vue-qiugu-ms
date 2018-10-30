@@ -106,7 +106,6 @@
       init() {
         let self = this;
         self.getGsjkqk();
-        self.getUploadGsjkqk();
       },
       //初始化表格数据
       getGsjkqk() {
@@ -257,72 +256,11 @@
             this.deleteData.push(row);
           }
         });
-      },
-
-
-      /**********************************公司借款情况模板下载*******************************************/
-      downloadGsjkqkFile: async function () {
-        let link = document.createElement("a");
-        link.style.display = "none";
-        link.href =
-          "http://testdfs.creditstate.cn/group1/M00/02/40/rBj-Dlut0gCAFn_QAAAj-fPCtbE77.xlsx"
-        link.setAttribute("download", "公司借款情况模板.xlsx");
-        document.body.appendChild(link);
-        link.click();
-      },
-      handleBefore(){
-        if(this.editIndex!=null){
-          this.$message({
-            message: '请先保存或取消当前编辑数据',
-            type: 'warning'
-          });
-          return false;
-        }
-        return true;
-      },
-      handleSuccess(res, file) {
-        if (res.resultCode === "0") {
-          this.$message({message: res.resultMsg, type: "success"});
-          this.tableData = res.resultMapData.newExcelData;
-          this.addData = res.resultMapData.newExcelData;
-        } else {
-          this.tipMsgData = res.resultData;
-          this.dialogTableVisible = true;
-        }
-      },
-      /**********************************公司借款情况附件上传*******************************************/
-      getUploadGsjkqk() {
-        return new Promise((resolve, reject) => {
-          this.$http({
-            url: '/hspt-web-api/enterprise_entry/epqytbfj/listGsjkqk',
-            method: "post",
-            data: {
-              creditCode: sessionStorage.getItem("creditCode"),
-              token: sessionStorage.getItem("token")
-            }
-          }).then(response => {
-            if (response.data.resultCode === "0") {
-              this.fileList = response.data.resultData.dataList;
-              this.fileList.forEach(item => {
-                this.$set(item, 'deleteFlag', true);
-              })
-            } else {
-              this.$message({message: response.data.resultMsg, type: "error"});
-            }
-          });
-        });
-      },
+      }
     }
   }
 
 </script>
 <style scoped>
-  .add {
-    padding-top: 5px;
-  }
-
-  .add .el-button {
-    border: 1px dashed #dcdfe6;
-  }
 
 </style>

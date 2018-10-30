@@ -18,7 +18,7 @@
 export default {
   name: 'about',
   data () {
-    return {notes: this.$store.state.notes}
+    return { notes: this.$store.state.notes }
   }
 }
 </script>

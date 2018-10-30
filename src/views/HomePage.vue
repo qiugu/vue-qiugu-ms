@@ -14,30 +14,30 @@
 </template>
 
 <script>
-import PersonInfo from '../components/PersonInfo'
-import ProgressLanguage from '../components/ProgressLanguage'
-import CardInfo from '../components/CardInfo'
-import TodoList from '../components/TodoList/TodoList'
+import PersonInfo from "../components/PersonInfo";
+import ProgressLanguage from "../components/ProgressLanguage";
+import CardInfo from "../components/CardInfo";
+import TodoList from "../components/TodoList/TodoList"
 export default {
-  name: 'HomePage',
+  name: "HomePage",
   components: {
     PersonInfo,
     ProgressLanguage,
     CardInfo,
     TodoList
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
-    .info {
-        margin-bottom: 20px;
-    }
-    .card,
-    .todoapp {
-        margin-left: 40px;
-    }
-    .todoapp {
-        margin-top: 20px;
-    }
+.info {
+  margin-bottom: 20px;
+}
+.card,
+.todoapp {
+  margin-left: 40px;
+}
+.todoapp {
+  margin-top: 20px;
+}
 </style>

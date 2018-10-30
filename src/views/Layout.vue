@@ -4,7 +4,10 @@
     <div class="con-wrap" :class="{conCollapse: isCollapse}">
       <TopBar/>
       <Tags/>
-      <router-view class="page-component-wrap animated fadeIn"></router-view>
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive" class="page-component-wrap animated fadeIn"></router-view>
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive" class="page-component-wrap animated fadeIn"></router-view>
     </div>
   </div>
 </template>

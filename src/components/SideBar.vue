@@ -8,7 +8,7 @@
             text-color="#ddd" 
             :default-active="$route.path" 
             :router="isRouter"
-            :unique-opend="isUnique" 
+            :unique-opened="true"
             mode="vertical" 
             :collapse="toggleSideBar">
             <template v-for="item in menu">
@@ -37,110 +37,109 @@
 </template>
 
 <script>
-import Rythm from 'rythm.js'
-import music from '../assets/langlangago.mp3'
-import bus from '../plugins/bus'
-import mixins from '@/components/mixins'
-const rythm = new Rythm()
+import Rythm from "rythm.js";
+import music from "../assets/langlangago.mp3";
+import bus from "../plugins/bus";
+import mixins from "@/components/mixins";
+const rythm = new Rythm();
 
 export default {
-  name: 'sidebar',
+  name: "sidebar",
   mixins: [mixins],
-  data () {
+  data() {
     return {
       isMusicOn: false,
-      isUnique: true,
       isRouter: true
-    }
+    };
   },
   computed: {
-    toggleSideBar () {
-      return this.$store.state.isCollapse
+    toggleSideBar() {
+      return this.$store.state.isCollapse;
     },
-    langType () {
-      return this.$i18n.locale
+    langType() {
+      return this.$i18n.locale;
     }
   },
-  created () {
-    this.initRythm()
-    bus.$on('stopMusic', () => {
-      this.isMusicOn = false
-      rythm.stop()
-    })
+  created() {
+    this.initRythm();
+    bus.$on("stopMusic", () => {
+      this.isMusicOn = false;
+      rythm.stop();
+    });
   },
   methods: {
-    initRythm () {
-      rythm.setMusic(music)
-      rythm.addRythm('twist1', 'twist', 0, 10)
-      rythm.addRythm('pulse3', 'pulse', 0, 10, {
+    initRythm() {
+      rythm.setMusic(music);
+      rythm.addRythm("twist1", "twist", 0, 10);
+      rythm.addRythm("pulse3", "pulse", 0, 10, {
         min: 0.75,
         max: 1.5
-      })
+      });
     },
-    toggleDance () {
+    toggleDance() {
       if (this.isMusicOn) {
-        this.isMusicOn = false
-        rythm.stop()
+        this.isMusicOn = false;
+        rythm.stop();
       } else {
-        this.isMusicOn = true
-        rythm.start()
+        this.isMusicOn = true;
+        rythm.start();
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>
-    #sidebar-wrap {
-        width: 160px;
-        height: 100%;
-        position: fixed;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        z-index: 5;
-    }
-    .imgWrap {
-        text-align: center;
-        position: absolute;
-        bottom: 30px;
-        width: 100%;
-    }
-    .imgWrap .gif {
-        width: 60px;
-        height: 60px;
-        border-radius: 30px;
-    }
-    .imgWrap .gif:hover {
-        cursor: pointer;
-    }
-    .logo {
-        color: #fff;
-        text-align: center;
-        background: #324157;
-        padding: 18px 0;
-        margin: 0;
-    }
-    #sidebar-wrap.collapsed {
-        width: 64px;
-    }
-    .el-menu {
-        height: 100%;
-        width: 100%;
-    }
-    .el-submenu .el-menu-item {
-        padding: 0 20px;
-        min-width: 160px;
-    }
-    .rythm.twist1 {
-        display: block;
-        height: 60px;
-        box-sizing: border-box;
-    }
-    #sidebar-wrap ul ul li {
-        background: rgba(40, 52, 70, 1) !important;
-    }
-    #sidebar-wrap ul ul li:hover {
-         background: #48576a !important;
-    }
+#sidebar-wrap {
+  width: 160px;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+}
+.imgWrap {
+  text-align: center;
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+}
+.imgWrap .gif {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+}
+.imgWrap .gif:hover {
+  cursor: pointer;
+}
+.logo {
+  color: #fff;
+  text-align: center;
+  background: #324157;
+  padding: 18px 0;
+  margin: 0;
+}
+#sidebar-wrap.collapsed {
+  width: 64px;
+}
+.el-menu {
+  height: 100%;
+  width: 100%;
+}
+.el-submenu .el-menu-item {
+  padding: 0 20px;
+  min-width: 160px;
+}
+.rythm.twist1 {
+  display: block;
+  height: 60px;
+  box-sizing: border-box;
+}
+#sidebar-wrap ul ul li {
+  background: rgba(40, 52, 70, 1) !important;
+}
+#sidebar-wrap ul ul li:hover {
+  background: #48576a !important;
+}
 </style>

@@ -9,12 +9,14 @@ import i18n from './plugins/lang'
 import 'element-ui/lib/theme-chalk/display.css'
 import echarts from 'echarts'
 import http from '@/axios/index'
+import directives from '@/directives/index'
 import './permission'
 
 Vue.use(VueParticles)
 Vue.config.productionTip = false
 Vue.prototype.$echarts = echarts
 Vue.prototype.$http = http
+directives(Vue)
 
 new Vue({
   router,

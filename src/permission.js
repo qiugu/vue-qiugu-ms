@@ -12,7 +12,7 @@ router.beforeEach((to, from, next) => {
         const roles = sessionStorage.getItem('roles')
         store.dispatch('permission/generateRoute', { roles })
           .then(() => {
-            // console.log(store.getters.addRoutes)
+            console.log(store.getters.addRoutes[0].children.length)
             router.addRoutes(store.getters.addRoutes)
             next({ ...to, replace: true })
           })

@@ -95,6 +95,7 @@ export default {
     handleCommand (command) {
       if (command === 'logout') {
         sessionStorage.clear()
+        this.$store.dispatch('permission/logout')
         bus.$emit('stopMusic')
         this.$router.push('/login')
       } else if (command === 'personInfo') {

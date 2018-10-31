@@ -4,10 +4,10 @@
           <h3>Auto Vue</h3>
           <h3>{{$t('m.login.introduction')}}</h3>
           <el-form :model="form" label-width="0" :rules="rules" ref="form" @keyup.enter.native="login('form')">
-              <el-form-item>
+              <el-form-item prop="username">
                   <el-input placeholder="用户名" suffix-icon="el-icon-message" v-model="form.username"></el-input>
               </el-form-item>
-              <el-form-item>
+              <el-form-item prop="password">
                   <el-input type="password" suffix-icon="el-icon-goods" placeholder="密码" v-model="form.password"></el-input>
               </el-form-item>
               <el-form-item>
@@ -50,8 +50,8 @@ export default {
   data () {
     return {
       form: {
-        username: sessionStorage.username || 'admin',
-        password: sessionStorage.password || 'admin'
+        username: sessionStorage.username || 'guest',
+        password: sessionStorage.password || 'guest'
       },
       isMemory: false,
       rules: {

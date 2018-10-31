@@ -6,6 +6,7 @@
     		@click="openMy">
     		Who am i?
     	</el-button>
+      <el-button v-permission="['admin']" type="primary">看不见我</el-button>
         <el-carousel 
         	:interval="4000" 
         	type="card" 

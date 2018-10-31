@@ -46,9 +46,9 @@ export default {
       return date.toLocaleDateString();
     }
   },
-  created() {
-    this.admin = this.$store.getters.username;
-    this.role = this.$store.getters.roles;
+  mounted () {
+    this.admin = sessionStorage.getItem('username');
+    this.role = sessionStorage.getItem('roles');
   }
 };
 </script>

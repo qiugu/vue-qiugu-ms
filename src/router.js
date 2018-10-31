@@ -8,13 +8,13 @@ export const constRouterMap = [
     path: '/login',
     name: 'Login',
     meta: {
-      title: '登录'
+      title: '登录',
+      keepAlive: false
     },
     component: () => import('@/views/Login.vue')
   },
   {
-    path: '/',
-    name: 'Layout',
+    path: '/layout',
     component: () => import('@/views/Layout.vue'),
     // redirect: '/login',
     // redirect: '/index',
@@ -24,7 +24,7 @@ export const constRouterMap = [
         name: 'index',
         meta: {
           title: '首页',
-          keepAlive: true
+          keepAlive: false
         },
         component: () => import('@/views/HomePage.vue')
       },
@@ -42,7 +42,7 @@ export const constRouterMap = [
         name: 'author',
         meta: {
           title: '关于作者',
-          keepAlive: true
+          keepAlive: false
         },
         component: () => import('@/views/AboutAuthor.vue')
       },
@@ -79,8 +79,7 @@ export const constRouterMap = [
 
 export const asyncRouterMap = [
   {
-    path: '/index',
-    name: 'layout',
+    path: '/layout',
     component: () => import('@/views/Layout.vue'),
     children: [
       {
@@ -89,7 +88,8 @@ export const asyncRouterMap = [
         component: () => import('@/views/AccessTest.vue'),
         meta: {
           title: '权限控制',
-          roles: ['admin']
+          roles: ['admin'],
+          keepAlive: false
         }
       },
       {
@@ -98,24 +98,22 @@ export const asyncRouterMap = [
         component: () => import('@/views/MagicCube.vue'),
         meta: {
           title: '魔幻立方',
-          roles: ['admin']
+          roles: ['admin'],
+          keepAlive: false
         }
-      },
-      {
-        path: '/error',
-        name: 'notfound',
-        component: () => import('@/views/NotFound.vue')
       }
     ]
+  },
+  {
+    path: '/error',
+    component: () => import('@/views/NotFound.vue')
   },
   {
     path: '*', redirect: '/error', hidden: true
   }
 ]
 
-let router = new Router({
+export default new Router({
   mode: 'history',
   routes: constRouterMap
 })
-
-export default router

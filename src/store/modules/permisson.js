@@ -1,21 +1,18 @@
 import { constRouterMap, asyncRouterMap } from '@/router'
 
 function hasPermission (roles, route) {
-  // console.log(roles);`
   if (route.meta && route.meta.roles) {
-    return roles.some(role => {
-      return route.meta.roles.indexOf(role) >= 0
-    })
+    return roles.some(role => route.meta.roles.indexOf(role) >= 0)
   } else {
     return true
   }
 }
 
-function filterAsyncRouter (asycnRouterMap, roles) {
-  const accessRouters = asyncRouterMap.filter(route => {
+function filterAsyncRouter (asyncRouter, roles) {
+  const accessRouters = asyncRouter.filter(route => {
     if (hasPermission(roles, route)) {
       if (route.children && route.children.length) {
-        // route.children = filterAsyncRouter(route.children, roles)
+        route.children = filterAsyncRouter(route.children, roles)
       }
       return true
     }
@@ -47,6 +44,7 @@ const permission = {
         const roles = []
         roles.push(data.roles)
         let accessRouters
+        console.log(roles.indexOf('admin') >= 0)
         if (roles.indexOf('admin') >= 0) {
           accessRouters = asyncRouterMap
         } else {
@@ -57,6 +55,9 @@ const permission = {
         commit('SET_ROLES', roles)
         resolve()
       })
+    },
+    logout ({ commit, state }) {
+      commit('SET_ROLES', [])
     }
   }
 }

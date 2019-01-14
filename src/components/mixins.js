@@ -69,6 +69,13 @@ const mixins = {
                 router: '/access',
                 icon: 'el-icon-setting',
                 children: []
+              },
+              {
+                name: '富文本编辑器',
+                name_en: 'rich_text',
+                router: '/editor',
+                icon: 'el-icon-service',
+                children: []
               }
             ]
         }

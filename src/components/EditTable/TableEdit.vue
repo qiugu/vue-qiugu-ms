@@ -214,7 +214,7 @@ export default {
     }
 }
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
     .add {
         padding-top: 5px;
         .el-button {

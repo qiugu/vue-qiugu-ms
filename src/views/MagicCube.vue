@@ -15,7 +15,7 @@ export default {
 }
 </script>
 
-<style lang='less' scope>
+<style lang='scss' scope>
   h1 {
     background: #ccc;
   }

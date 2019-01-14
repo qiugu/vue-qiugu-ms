@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
     .card-item {
         display: flex;
         align-items: center;

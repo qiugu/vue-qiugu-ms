@@ -72,6 +72,15 @@ export const constRouterMap = [
           keepAlive: true
         },
         component: () => import('@/views/TableGrid.vue')
+      },
+      {
+        path: '/editor',
+        name: 'editor',
+        meta: {
+          title: '富文本编辑器',
+          keepAlive: false
+        },
+        component: () => import('@/views/RichText.vue')
       }
     ]
   }    

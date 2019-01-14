@@ -53,15 +53,12 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-@card: #999;
-.flex {
+<style lang="scss" scoped>
+$card: #999;
+.clearfix {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.clearfix {
-  .flex;
   & img {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -76,11 +73,11 @@ export default {
   }
   & .userinfo span {
     font-size: 14px;
-    color: @card;
+    color: $card;
   }
 }
 .text div {
-  color: @card;
+  color: $card;
 }
 .text div span {
   padding-left: 40%;

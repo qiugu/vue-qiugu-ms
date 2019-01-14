@@ -89,7 +89,7 @@
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .handle {
     display: flex;
     justify-content: center;

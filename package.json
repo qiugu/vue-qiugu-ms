@@ -27,15 +27,13 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.1",
-    "@vue/cli-plugin-eslint": "^3.0.1",
     "@vue/cli-plugin-unit-mocha": "^3.0.1",
     "@vue/cli-service": "^3.0.1",
-    "@vue/eslint-config-standard": "^3.0.1",
     "@vue/test-utils": "^1.0.0-beta.20",
     "chai": "^4.1.2",
-    "less": "^3.8.1",
-    "less-loader": "^4.1.0",
     "mockjs": "^1.0.1-beta3",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
     "vue-cli-plugin-element": "^1.0.0",
     "vue-template-compiler": "^2.5.17"
   },

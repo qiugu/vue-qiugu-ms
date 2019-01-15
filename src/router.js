@@ -74,13 +74,22 @@ export const constRouterMap = [
         component: () => import('@/views/TableGrid.vue')
       },
       {
-        path: '/editor',
-        name: 'editor',
+        path: '/teditor',
+        name: 'teditor',
         meta: {
-          title: '富文本编辑器',
+          title: 'tinymce',
           keepAlive: false
         },
         component: () => import('@/views/RichText.vue')
+      },
+      {
+        path: '/weditor',
+        name: 'weditor',
+        meta: {
+          title: 'wangeditor',
+          keepAlive: false
+        },
+        component: () => import('@/views/WangEditor.vue')
       }
     ]
   }    

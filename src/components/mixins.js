@@ -71,11 +71,24 @@ const mixins = {
                 children: []
               },
               {
-                name: '富文本编辑器',
+                name: '富文本编辑',
                 name_en: 'rich_text',
-                router: '/editor',
+                router: '3',
                 icon: 'el-icon-service',
-                children: []
+                children: [
+                  {
+                    name: 'TinyMCE富文本编辑器',
+                    name: 'tinymce',
+                    router: '/teditor',
+                    icon: 'el-icon-edit-outline'
+                  },
+                  {
+                    name: 'wangEditor富文本编辑器',
+                    name: 'wangeditor',
+                    router: '/weditor',
+                    icon: 'el-icon-edit-outline'
+                  }
+                ]
               }
             ]
         }

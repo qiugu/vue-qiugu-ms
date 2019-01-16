@@ -1,6 +1,6 @@
 <template>
     <div class="wang">
-        <div ref="editor"></div>
+        <div ref="editor" style="text-align: left;"></div>
         <div class="w-e-text" v-html="content"></div>
     </div>
 </template>

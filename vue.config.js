@@ -17,7 +17,7 @@ const externals = {
 const productionGzipExtensions = ['js', 'css']
 
 module.exports = {
-  baseUrl: './', //基本路径
+  publicPath: './', //基本路径
   outputDir: 'points',
   productionSourceMap: false,
   assetsDir: 'static',
@@ -84,8 +84,7 @@ module.exports = {
   // 配置 webpack-dev-server 行为。
   devServer: {
     port: 3001,
-    open: true,
-    proxy: {}
+    open: true
   },
   
   // 第三方插件的选项

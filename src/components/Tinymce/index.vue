@@ -129,15 +129,26 @@ export default {
           }, 0);
           return img;
         },
-        images_upload_handler(blobInfo, success, failure) {
-          let xhr = "";
-          let formData = new FormData();
-          formData.append("upFile", blobInfo.blob());
-          _this.$http.post(_this.BASE_UPLOAD_URL).then(res => {
-            success(res);
-          }).catch(err => {
-            failure(err);
-          })
+        images_upload_handler: function (blobInfo, success, failure) {
+          let xhr, formData;
+          xhr = new XMLHttpRequest();
+          xhr.withCredentials = false;
+          xhr.open('POST', 'https://api.uat.iyuedian.com/iyd-imall-manage/imall/v1/upload');
+          xhr.onload = function() {
+              if(xhr.status<200||xhr.status>=300){
+                  failure(xhr.status);
+                  return;
+              }
+              let json = JSON.parse(xhr.responseText);
+              if(json.code==0){
+                  success(json.data[0].newFileName);
+              } else {
+                  failure('HTTP Error: ' + json.msg);
+              }
+          };
+          formData = new FormData();
+          formData.append('file', blobInfo.blob(), blobInfo.filename());
+          xhr.send(formData);
         }
       });
     },

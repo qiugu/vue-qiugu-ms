@@ -7,6 +7,7 @@ export const constRouterMap = [
   {
     path: '/login',
     name: 'Login',
+    alias: '/',
     meta: {
       title: '登录',
       keepAlive: false

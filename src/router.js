@@ -91,6 +91,15 @@ export const constRouterMap = [
           keepAlive: false
         },
         component: () => import('@/views/WangEditor.vue')
+      },
+      {
+        path: '/validate',
+        name: 'validate',
+        meta: {
+          title: '表单验证',
+          keepAlive: false
+        },
+        component: () => import('@/views/ValidateForm.vue')
       }
     ]
   }    

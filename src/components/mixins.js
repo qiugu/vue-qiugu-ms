@@ -26,6 +26,12 @@ const mixins = {
                     name_en: 'About',
                     router: '/author',
                     icon: 'el-icon-document'
+                  },
+                  {
+                    name: '表单验证',
+                    name_en: 'Validate',
+                    router: '/validate',
+                    icon: 'el-icon-document'
                   }
                 ]
               },

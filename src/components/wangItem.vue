@@ -32,6 +32,7 @@ export default {
         console.log('我刷新了');
         const editor = new E(this.$refs.editor);
         editor.customConfig.uploadImgShowBase64 = true;
+        editor.customConfig.zIndex = 100;
         editor.customConfig.onchange = (html) => {
             // html 即变化之后的内容
             // console.log(html);

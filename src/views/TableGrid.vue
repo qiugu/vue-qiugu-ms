@@ -116,7 +116,9 @@
           if (response.data.errno === 0) {
             this.tableData = response.data.data;
           }
-        });
+        }).catch(e => {
+          console.log(e);
+        })
       },
 
       //组件数据方法处理
@@ -224,7 +226,7 @@
           updateData: JSON.stringify(self.updateData),
           delData: JSON.stringify(self.deleteData)
         };
-        this.$axios.post('/hspt-web-api/entryPrise/entry/epQytbGsjkqk/saveGsjkqk', data).then(response => {
+        this.$axios.post('/qiugu/test', data).then(response => {
           const data = response.data;
           if (data.resultCode === "0") {
             this.$message({message: data.resultMsg, type: "success"});

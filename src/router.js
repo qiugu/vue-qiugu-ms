@@ -12,11 +12,11 @@ export const constRouterMap = [
       title: '登录',
       keepAlive: false
     },
-    component: () => import('@/views/Login.vue')
+    component: () => import(/* webpackChunkName: "Login" */'@/views/Login.vue')
   },
   {
     path: '/layout',
-    component: () => import('@/views/Layout.vue'),
+    component: () => import(/* webpackChunkName: "Layout" */'@/views/Layout.vue'),
     // redirect: '/login',
     // redirect: '/index',
     children: [
@@ -27,7 +27,7 @@ export const constRouterMap = [
           title: '首页',
           keepAlive: false
         },
-        component: () => import('@/views/HomePage.vue')
+        component: () => import(/* webpackChunkName: "HomePage" */'@/views/HomePage.vue')
       },
       {
         path: '/about',
@@ -36,7 +36,7 @@ export const constRouterMap = [
           title: '开发备忘',
           keepAlive: false
         },
-        component: () => import('@/views/About.vue')
+        component: () => import(/* webpackChunkName: "About" */'@/views/About.vue')
       },
       {
         path: '/author',
@@ -45,7 +45,7 @@ export const constRouterMap = [
           title: '关于作者',
           keepAlive: false
         },
-        component: () => import('@/views/AboutAuthor.vue')
+        component: () => import(/* webpackChunkName: "AboutAuthor" */'@/views/AboutAuthor.vue')
       },
       {
         path: '/weather',
@@ -54,7 +54,7 @@ export const constRouterMap = [
           title: '天气预报',
           keepAlive: true
         },
-        component: () => import('@/views/WeatherFore.vue')
+        component: () => import(/* webpackChunkName: "WeatherFore" */'@/views/WeatherFore.vue')
       },
       {
         path: '/dynamic',
@@ -63,7 +63,7 @@ export const constRouterMap = [
           title: '动态表格',
           keepAlive: false
         },
-        component: () => import('@/views/DynamicTable.vue')
+        component: () => import(/* webpackChunkName: "DynamicTable" */'@/views/DynamicTable.vue')
       },
       {
         path: '/editable',
@@ -72,7 +72,7 @@ export const constRouterMap = [
           title: '可编辑表格',
           keepAlive: true
         },
-        component: () => import('@/views/TableGrid.vue')
+        component: () => import(/* webpackChunkName: "TableGrid" */'@/views/TableGrid.vue')
       },
       {
         path: '/teditor',
@@ -81,7 +81,7 @@ export const constRouterMap = [
           title: 'tinymce',
           keepAlive: false
         },
-        component: () => import('@/views/RichText.vue')
+        component: () => import(/* webpackChunkName: "RichText" */'@/views/RichText.vue')
       },
       {
         path: '/weditor',
@@ -90,7 +90,7 @@ export const constRouterMap = [
           title: 'wangeditor',
           keepAlive: false
         },
-        component: () => import('@/views/WangEditor.vue')
+        component: () => import(/* webpackChunkName: "WangEditor" */'@/views/WangEditor.vue')
       },
       {
         path: '/validate',
@@ -99,7 +99,7 @@ export const constRouterMap = [
           title: '表单验证',
           keepAlive: false
         },
-        component: () => import('@/views/ValidateForm.vue')
+        component: () => import(/* webpackChunkName: "ValidateForm" */'@/views/ValidateForm.vue')
       }
     ]
   }    
@@ -113,7 +113,7 @@ export const asyncRouterMap = [
       {
         path: '/access',
         name: 'access',
-        component: () => import('@/views/AccessTest.vue'),
+        component: () => import(/* webpackChunkName: "AccessTest" */'@/views/AccessTest.vue'),
         meta: {
           title: '权限控制',
           roles: ['admin'],
@@ -123,7 +123,7 @@ export const asyncRouterMap = [
       {
         path: '/cube',
         name: 'cube',
-        component: () => import('@/views/MagicCube.vue'),
+        component: () => import(/* webpackChunkName: "MagicCube" */'@/views/MagicCube.vue'),
         meta: {
           title: '魔幻立方',
           roles: ['admin'],
@@ -134,7 +134,7 @@ export const asyncRouterMap = [
   },
   {
     path: '/error',
-    component: () => import('@/views/NotFound.vue')
+    component: () => import(/* webpackChunkName: "NotFound" */'@/views/NotFound.vue')
   },
   {
     path: '*', redirect: '/error', hidden: true

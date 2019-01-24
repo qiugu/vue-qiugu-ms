@@ -5,8 +5,8 @@ function resolve(dir) {
 }
 
 // 导入compression-webpack-plugin
-const CompressionWebpackPlugin = require('compression-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const CompressionWebpackPlugin = require('compression-webpack-plugin')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const externals = {
   'vue': 'Vue',
   'vue-router': 'VueRouter',
@@ -18,7 +18,7 @@ const productionGzipExtensions = ['js', 'css']
 
 module.exports = {
   publicPath: './', //基本路径
-  outputDir: 'points',
+  outputDir: 'dist',
   productionSourceMap: false,
   assetsDir: 'static',
   filenameHashing: true,
@@ -46,26 +46,26 @@ module.exports = {
   configureWebpack: config => {
     if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
       config.externals = externals
-      config.plugins.push(
-        new CompressionWebpackPlugin({
-          asset: '[path].gz[query]',
-          algorithm: 'gzip',
-          test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
-          threshold: 10240,
-          minRatio: 0.8
-        }),
-        new UglifyJsPlugin({
-          uglifyOptions: {
-            compress: {
-              warnings: false,
-              drop_debugger: true,
-              drop_console: true,
-            },
-          },
-          sourceMap: false,
-          parallel: true,
-        }),
-      );
+      // config.plugins.push(
+      //   new CompressionWebpackPlugin({
+      //     asset: '[path].gz[query]',
+      //     algorithm: 'gzip',
+      //     test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
+      //     threshold: 10240,
+      //     minRatio: 0.8
+      //   }),
+      //   new UglifyJsPlugin({
+      //     uglifyOptions: {
+      //       compress: {
+      //         warnings: false,
+      //         drop_debugger: true,
+      //         drop_console: true,
+      //       },
+      //     },
+      //     sourceMap: false,
+      //     parallel: true,
+      //   }),
+      // );
       const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
       config.plugins.push(new BundleAnalyzerPlugin());
     }
@@ -84,7 +84,8 @@ module.exports = {
   // 配置 webpack-dev-server 行为。
   devServer: {
     port: 3001,
-    open: true
+    open: true,
+    proxy: {}
   },
   
   // 第三方插件的选项

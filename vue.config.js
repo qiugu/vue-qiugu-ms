@@ -5,19 +5,20 @@ function resolve(dir) {
 }
 
 // 导入compression-webpack-plugin
-// const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
 // const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const externals = {
   'vue': 'Vue',
   'vue-router': 'VueRouter',
   'vuex': 'Vuex',
-  'axios': 'axios'
+  'axios': 'axios',
+  'ELEMENT': 'element-ui'
 }
 // 定义压缩文件类型
 const productionGzipExtensions = ['js', 'css']
 
 module.exports = {
-  publicPath: './', //基本路径
+  publicPath: '/vue-qiugu-ms/', //基本路径
   outputDir: 'dist',
   productionSourceMap: false,
   assetsDir: 'static',
@@ -45,15 +46,15 @@ module.exports = {
   // 高级的方式
   configureWebpack: config => {
     if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
-      config.externals = externals
-      // config.plugins.push(
-      //   new CompressionWebpackPlugin({
-      //     asset: '[path].gz[query]',
-      //     algorithm: 'gzip',
-      //     test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
-      //     threshold: 10240,
-      //     minRatio: 0.8
-      //   }),
+      // config.externals = externals
+      config.plugins.push(
+        new CompressionWebpackPlugin({
+          filename: '[path].gz[query]',
+          algorithm: 'gzip',
+          test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
+          threshold: 10240,
+          minRatio: 0.8
+        }),
       //   new UglifyJsPlugin({
       //     uglifyOptions: {
       //       compress: {
@@ -65,7 +66,7 @@ module.exports = {
       //     sourceMap: false,
       //     parallel: true,
       //   }),
-      // );
+      );
       const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
       config.plugins.push(new BundleAnalyzerPlugin());
     }
@@ -85,7 +86,7 @@ module.exports = {
   devServer: {
     port: 3001,
     open: true,
-    proxy: {}
+    proxy: 'http://localhost:8080'
   },
   
   // 第三方插件的选项

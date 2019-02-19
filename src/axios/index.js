@@ -2,12 +2,16 @@ import axios from 'axios'
 import router from '../router';
 import {Message} from 'element-ui'
 import store from '@/store/index'
+import qs from 'qs'
 
 const service = axios.create({
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-  }
+  },
+  // paramsSerializer: function(params) {
+  //     return qs.stringify(params)
+  // }
 });
 
 // request interceptor
@@ -16,7 +20,7 @@ service.interceptors.request.use(
     // Do something before request is sent
     if (store.getters.token) {
       // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
-      config.headers.Authorization = `${store.getters.token}`
+      // config.headers.Authorization = `${store.getters.token}`
     }
     return config
   },

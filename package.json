@@ -15,6 +15,7 @@
     "element-ui": "^2.4.5",
     "font-awesome": "^4.7.0",
     "particles.js": "^2.0.0",
+    "qs": "^6.6.0",
     "rythm.js": "^2.2.3",
     "screenfull": "^3.3.2",
     "vue": "^2.5.17",

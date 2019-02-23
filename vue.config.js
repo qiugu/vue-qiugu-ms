@@ -6,7 +6,7 @@ function resolve(dir) {
 
 // 导入compression-webpack-plugin
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
-// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const externals = {
   'vue': 'Vue',
   'vue-router': 'VueRouter',
@@ -36,13 +36,9 @@ module.exports = {
       chunks: ["chunk-vendors", "chunk-common", "index"]
     }
   },
-  chainWebpack: config => {
-    config.resolve.alias
-      .set('@', resolve('src'))
-      .set('assets', resolve('src/assets'))
-      .set('components', resolve('src/components'))
-      .set('views', resolve('src/views'))
-  },
+  transpileDependencies: [
+    'vue-particles'
+  ],
   // 高级的方式
   configureWebpack: config => {
     if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
@@ -55,17 +51,18 @@ module.exports = {
           threshold: 10240,
           minRatio: 0.8
         }),
-      //   new UglifyJsPlugin({
-      //     uglifyOptions: {
-      //       compress: {
-      //         warnings: false,
-      //         drop_debugger: true,
-      //         drop_console: true,
-      //       },
-      //     },
-      //     sourceMap: false,
-      //     parallel: true,
-      //   }),
+        new UglifyJsPlugin({
+          uglifyOptions: {
+            ecma: 6,
+            compress: {
+              warnings: false,
+              drop_debugger: true,
+              drop_console: true,
+            },
+          },
+          sourceMap: false,
+          parallel: true,
+        })
       );
       const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
       config.plugins.push(new BundleAnalyzerPlugin());

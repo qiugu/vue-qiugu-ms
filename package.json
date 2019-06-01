@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "area-data": "^5.0.6",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "echarts": "^4.1.0",
     "element-ui": "^2.4.5",
     "font-awesome": "^4.7.0",

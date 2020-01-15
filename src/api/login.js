@@ -6,7 +6,7 @@ export function loginByUsername(username, password) {
     password
   }
   return http({
-    url: 'http://localhost:8080/user/login',
+    url: '/getroles',
     method: 'post',
     data
   })

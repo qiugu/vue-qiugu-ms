@@ -76,7 +76,7 @@ module.exports = {
   devServer: {
     port: 3001,
     open: true,
-    proxy: 'http://localhost:8080'
+    proxy: 'http://localhost:8080https://www.easy-mock.com/mock/5cb691e3e3926e3006389081/qgms'
   },
   
   // 第三方插件的选项

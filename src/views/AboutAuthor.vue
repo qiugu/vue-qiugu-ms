@@ -1,33 +1,32 @@
 <template>
-    <div class="authors">
-    	<el-button 
-    		plain 
-    		class="animated rollIn" 
-    		@click="openMy">
-    		Who am i?
-    	</el-button>
-      <el-button v-permission="['admin']" type="primary">看不见我</el-button>
-        <el-carousel 
-        	:interval="4000" 
-        	type="card" 
-        	height="400px" 
-        	class="animated flipInY"
-        	trigger="click"
-        	@change="openInfo">
-        	<el-carousel-item 
-        		v-for="item in authorImages" 
-        		:key="item.alt" 
-        		:label="item.text">
-        		<img :src="item.src" :alt="item.alt"/>
-        	</el-carousel-item>
-        </el-carousel>
-    </div>
+  <div class="authors">
+    <el-button plain class="animated rollIn" @click="openMy">
+      Who am i?
+    </el-button>
+    <el-button v-permission="['admin']" type="primary">看不见我</el-button>
+    <el-carousel
+      :interval="4000"
+      type="card"
+      height="400px"
+      class="animated flipInY"
+      trigger="click"
+      @change="openInfo"
+    >
+      <el-carousel-item
+        v-for="item in authorImages"
+        :key="item.alt"
+        :label="item.text"
+      >
+        <img :src="item.src" :alt="item.alt" />
+      </el-carousel-item>
+    </el-carousel>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "AboutAuthor",
-  data() {
+  name: 'AboutAuthor',
+  data () {
     return {
       authorImages: [
         {
@@ -61,25 +60,25 @@ export default {
       ],
       initMes:
         '也许我还不够专业，也许我离前端还远，但是我一直在前进，请等着我，我会在未来某个地方去找你'
-    };
+    }
   },
   methods: {
-    openMy(e, title, mes) {
-      mes = mes || this.initMes;
-      title = title || "关于我";
-      const h = this.$createElement;
+    openMy (e, title, mes) {
+      mes = mes || this.initMes
+      title = title || '关于我'
+      const h = this.$createElement
       this.$notify({
         title: title,
-        message: h("i", { style: "color: teal" }, mes)
-      });
+        message: h('i', { style: 'color: teal' }, mes)
+      })
     },
-    openInfo(e) {
-      let indexText = this.authorImages[e].content;
-      let indexTitle = this.authorImages[e].text;
-      this.openMy(e, indexTitle, indexText);
+    openInfo (e) {
+      const indexText = this.authorImages[e].content
+      const indexTitle = this.authorImages[e].text
+      this.openMy(e, indexTitle, indexText)
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

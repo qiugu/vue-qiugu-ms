@@ -76,9 +76,9 @@ export default {
       'toggleSiderBar'
     ]),
     toggleLanguage () {
-      let locale = this.$i18n.locale
+      const locale = this.$i18n.locale
       locale === 'zh' ? (this.$i18n.locale = 'en') : (this.$i18n.locale = 'zh')
-      let info = locale === 'en' ? '切换成功' : 'change language successfully'
+      const info = locale === 'en' ? '切换成功' : 'change language successfully'
       this.$message.success(info)
     },
     toggleFullscreen () {

@@ -54,55 +54,53 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        }
+export default {
+  data () {
+    return {
+      form: {
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: ''
       }
-    },
-    methods: {
-      onSubmit() {
-        console.log('submit!');
-      }
-    },
-    directives: {
-      enterNumber: {
-        inserted: function (el) {
-          el.addEventListener("keypress",function(e){
-            e = e || window.event;
-            let charcode = typeof e.charCode == 'number' ? e.charCode : e.keyCode;
-            let re = /\d/;
-            if(charcode === 46){
-              if(el.children[0].value.includes('.')){
-                e.preventDefault();
-              }
-              return;
-            } else if (charcode === 45) {
-              if(el.children[0].value.includes('-')){
-                e.preventDefault();
-              }
-              return;
-            }else if(!re.test(String.fromCharCode(charcode)) && charcode > 9 && !e.ctrlKey){
-              if(e.preventDefault){
-                e.preventDefault();
-              }else{
-                  e.returnValue = false;
-              }
+    }
+  },
+  methods: {
+    onSubmit () {
+      console.log('submit!')
+    }
+  },
+  directives: {
+    enterNumber: {
+      inserted: function (el) {
+        el.addEventListener('keypress', function (e) {
+          e = e || window.event
+          const charcode = typeof e.charCode === 'number' ? e.charCode : e.keyCode
+          const re = /\d/
+          if (charcode === 46) {
+            if (el.children[0].value.includes('.')) {
+              e.preventDefault()
             }
-          });
-        }
+          } else if (charcode === 45) {
+            if (el.children[0].value.includes('-')) {
+              e.preventDefault()
+            }
+          } else if (!re.test(String.fromCharCode(charcode)) && charcode > 9 && !e.ctrlKey) {
+            if (e.preventDefault) {
+              e.preventDefault()
+            } else {
+              e.returnValue = false
+            }
+          }
+        })
       }
-    },
+    }
   }
+}
 </script>
 
 <style>

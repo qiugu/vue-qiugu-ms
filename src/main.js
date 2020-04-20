@@ -15,7 +15,6 @@ import 'echarts/lib/component/title'
 import 'echarts/lib/component/tooltip'
 import http from '@/utils/request'
 import directives from '@/directives'
-import './permission'
 
 Vue.use(ElementUI)
 Vue.use(VueParticles)

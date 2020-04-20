@@ -1,5 +1,5 @@
 import axios from 'axios'
-import router from '../router';
+import router from '../router'
 import { Message } from 'element-ui'
 import store from '@/store'
 import qs from 'qs'
@@ -8,11 +8,11 @@ const service = axios.create({
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-  },
+  }
   // paramsSerializer: function(params) {
   //     return qs.stringify(params)
   // }
-});
+})
 
 // request interceptor
 service.interceptors.request.use(
@@ -34,15 +34,15 @@ service.interceptors.request.use(
 // respone interceptor
 service.interceptors.response.use(
   response => {
-    const res = response.data;
-    if (res.resultCode === "-2") {
+    const res = response.data
+    if (res.resultCode === '-2') {
       Message({
         message: 'token已过期,请重新登录',
         type: 'error',
         duration: 5 * 1000
-      });
+      })
       sessionStorage.clear()
-      router.push({name: 'Login'});
+      router.push({ name: 'Login' })
       // window.vm.$router.push({name: 'Login'});
       // location.href = '/';
     } else {
@@ -54,9 +54,9 @@ service.interceptors.response.use(
       message: error.message,
       type: 'error',
       duration: 5 * 1000
-    });
+    })
     return Promise.reject(error)
   }
-);
+)
 
 export default service

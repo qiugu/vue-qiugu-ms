@@ -25,7 +25,7 @@ export default {
     }
   },
   directives: {
-    focus (el, {value}, {context}) {
+    focus (el, { value }, { context }) {
       if (value) {
         context.$nextTick(() => {
           el.focus()
@@ -43,7 +43,7 @@ export default {
     doneEdit (e) {
       // 获得输入框中的值和当前组件的todo对象传递给相应的mutations
       const value = e.target.value.trim()
-      const {todo} = this
+      const { todo } = this
       if (!value) {
         this.removeTodo(todo)
       } else if (this.editing) {

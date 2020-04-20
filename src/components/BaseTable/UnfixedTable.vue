@@ -25,21 +25,21 @@ export default {
   name: 'BaseTable',
   data () {
     return {
-        tableData: [
-            { 
-                name: '123',
-                Vue: '234',
-                React: '345',
-                Node: '456'
-            },
-            {
-                name: '567',
-                Vue: '789',
-                React: '901',
-                Node: '012' 
-            }
-        ],
-        columnForm: ['Vue','React']
+      tableData: [
+        {
+          name: '123',
+          Vue: '234',
+          React: '345',
+          Node: '456'
+        },
+        {
+          name: '567',
+          Vue: '789',
+          React: '901',
+          Node: '012'
+        }
+      ],
+      columnForm: ['Vue', 'React']
     }
   }
 }

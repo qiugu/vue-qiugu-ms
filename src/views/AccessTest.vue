@@ -16,9 +16,8 @@ export default {
 
     },
     changeNormal () {
-      
+
     }
   }
 }
 </script>
-

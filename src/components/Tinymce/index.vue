@@ -8,38 +8,38 @@
 </template>
 
 <script>
-import editorImage from "./components/editorImage";
-import plugins from "./plugins";
-import toolbar from "./toolbar";
+import editorImage from './components/editorImage'
+import plugins from './plugins'
+import toolbar from './toolbar'
 
 export default {
-  name: "Tinymce",
+  name: 'Tinymce',
   components: { editorImage },
   props: {
     id: {
       type: String,
-      default: function() {
+      default: function () {
         return (
-          "vue-tinymce-" +
+          'vue-tinymce-' +
           +new Date() +
-          ((Math.random() * 1000).toFixed(0) + "")
-        );
+          ((Math.random() * 1000).toFixed(0) + '')
+        )
       }
     },
     value: {
       type: String,
-      default: ""
+      default: ''
     },
     toolbar: {
       type: Array,
       required: false,
-      default() {
-        return [];
+      default () {
+        return []
       }
     },
     menubar: {
       type: String,
-      default: "file edit insert view format table"
+      default: 'file edit insert view format table'
     },
     height: {
       type: Number,
@@ -47,137 +47,136 @@ export default {
       default: 360
     }
   },
-  data() {
+  data () {
     return {
       BASE_UPLOAD_URL: '/api/imgupload',
       hasChange: false,
       hasInit: false,
       tinymceId: this.id,
       fullscreen: false
-    };
+    }
   },
   watch: {
-    value(val) {
+    value (val) {
       if (!this.hasChange && this.hasInit) {
         this.$nextTick(() =>
-          window.tinymce.get(this.tinymceId).setContent(val || "")
-        );
+          window.tinymce.get(this.tinymceId).setContent(val || '')
+        )
       }
     }
   },
-  mounted() {
-    this.initTinymce();
+  mounted () {
+    this.initTinymce()
   },
-  activated() {
-    this.initTinymce();
+  activated () {
+    this.initTinymce()
   },
-  deactivated() {
-    this.destroyTinymce();
+  deactivated () {
+    this.destroyTinymce()
   },
-  destroyed() {
-    this.destroyTinymce();
+  destroyed () {
+    this.destroyTinymce()
   },
   methods: {
-    initTinymce() {
-      const _this = this;
+    initTinymce () {
+      const _this = this
       window.tinymce.init({
-        language: "zh_CN",
+        language: 'zh_CN',
         selector: `#${this.tinymceId}`,
         height: this.height,
-        body_class: "panel-body ",
+        body_class: 'panel-body ',
         object_resizing: false,
         toolbar: this.toolbar.length > 0 ? this.toolbar : toolbar,
         menubar: this.menubar,
         plugins: plugins,
         end_container_on_empty_block: true,
-        powerpaste_word_import: "clean",
+        powerpaste_word_import: 'clean',
         code_dialog_height: 450,
         code_dialog_width: 1000,
-        advlist_bullet_styles: "square",
-        advlist_number_styles: "default",
-        imagetools_cors_hosts: ["www.tinymce.com", "codepen.io"],
-        default_link_target: "_blank",
+        advlist_bullet_styles: 'square',
+        advlist_number_styles: 'default',
+        imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
+        default_link_target: '_blank',
         link_title: false,
         nonbreaking_force_tab: true, // inserting nonbreaking space &nbsp; need Nonbreaking Space Plugin
         init_instance_callback: editor => {
           if (_this.value) {
-            editor.setContent(_this.value);
+            editor.setContent(_this.value)
           }
-          _this.hasInit = true;
-          editor.on("NodeChange Change KeyUp SetContent", () => {
-            this.hasChange = true;
-            this.$emit("input", editor.getContent());
-          });
+          _this.hasInit = true
+          editor.on('NodeChange Change KeyUp SetContent', () => {
+            this.hasChange = true
+            this.$emit('input', editor.getContent())
+          })
         },
-        setup(editor) {
-          editor.on("FullscreenStateChanged", e => {
-            _this.fullscreen = e.state;
-          });
+        setup (editor) {
+          editor.on('FullscreenStateChanged', e => {
+            _this.fullscreen = e.state
+          })
         },
         // 整合七牛上传
-        images_dataimg_filter(img) {
+        images_dataimg_filter (img) {
           setTimeout(() => {
-            const $image = $(img);
-            $image.removeAttr("width");
-            $image.removeAttr("height");
+            const $image = document.querySelector('img')
+            $image.removeAttr('width')
+            $image.removeAttr('height')
             if ($image[0].height && $image[0].width) {
-              $image.attr("data-wscntype", "image");
-              $image.attr("data-wscnh", $image[0].height);
-              $image.attr("data-wscnw", $image[0].width);
-              $image.addClass("wscnph");
+              $image.attr('data-wscntype', 'image')
+              $image.attr('data-wscnh', $image[0].height)
+              $image.attr('data-wscnw', $image[0].width)
+              $image.addClass('wscnph')
             }
-          }, 0);
-          return img;
+          }, 0)
+          return img
         },
         images_upload_handler: function (blobInfo, success, failure) {
-          let xhr, formData;
-          xhr = new XMLHttpRequest();
-          xhr.withCredentials = false;
-          xhr.open('POST', 'https://api.uat.iyuedian.com/iyd-imall-manage/imall/v1/upload');
-          xhr.onload = function() {
-              if(xhr.status<200||xhr.status>=300){
-                  failure(xhr.status);
-                  return;
-              }
-              let json = JSON.parse(xhr.responseText);
-              if(json.code==0){
-                  success(json.data[0].newFileName);
-              } else {
-                  failure('HTTP Error: ' + json.msg);
-              }
-          };
-          formData = new FormData();
-          formData.append('file', blobInfo.blob(), blobInfo.filename());
-          xhr.send(formData);
+          let formData
+          const xhr = new XMLHttpRequest()
+          xhr.withCredentials = false
+          xhr.open('POST', 'https://api.uat.iyuedian.com/iyd-imall-manage/imall/v1/upload')
+          xhr.onload = function () {
+            if (xhr.status < 200 || xhr.status >= 300) {
+              failure(xhr.status)
+              return
+            }
+            const json = JSON.parse(xhr.responseText)
+            if (json.code === 0) {
+              success(json.data[0].newFileName)
+            } else {
+              failure('HTTP Error: ' + json.msg)
+            }
+          }
+          formData.append('file', blobInfo.blob(), blobInfo.filename())
+          xhr.send(formData)
         }
-      });
+      })
     },
-    destroyTinymce() {
-      const tinymce = window.tinymce.get(this.tinymceId);
+    destroyTinymce () {
+      const tinymce = window.tinymce.get(this.tinymceId)
       if (this.fullscreen) {
-        tinymce.execCommand("mceFullScreen");
+        tinymce.execCommand('mceFullScreen')
       }
 
       if (tinymce) {
-        tinymce.destroy();
+        tinymce.destroy()
       }
     },
-    setContent(value) {
-      window.tinymce.get(this.tinymceId).setContent(value);
+    setContent (value) {
+      window.tinymce.get(this.tinymceId).setContent(value)
     },
-    getContent() {
-      window.tinymce.get(this.tinymceId).getContent();
+    getContent () {
+      window.tinymce.get(this.tinymceId).getContent()
     },
-    imageSuccessCBK(arr) {
-      const _this = this;
+    imageSuccessCBK (arr) {
+      const _this = this
       arr.forEach(v => {
         window.tinymce
           .get(_this.tinymceId)
-          .insertContent(`<img class="wscnph" src="${v.url}" >`);
-      });
+          .insertContent(`<img class="wscnph" src="${v.url}" >`)
+      })
     }
   }
-};
+}
 </script>
 
 <style scoped>

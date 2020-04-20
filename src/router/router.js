@@ -102,7 +102,7 @@ export const constRouterMap = [
         component: () => import(/* webpackChunkName: "ValidateForm" */'@/views/ValidateForm.vue')
       }
     ]
-  }    
+  }
 ]
 
 export const asyncRouterMap = [

@@ -31,49 +31,49 @@ export default new Vuex.Store({
       '切换路由时，vuex里的state不会跟着变，除非在导航守卫里提交mutations'
     ],
     progressList: [
-      {name: 'Vue', percent: 57.2, color: '#00c285'},
-      {name: 'JavaScript', percent: 29.8, color: '#f0e54d'},
-      {name: 'CSS', percent: 11.9, color: '#3198ff'},
-      {name: 'HTML', percent: 1.1, color: '#fa7a86'}
+      { name: 'Vue', percent: 57.2, color: '#00c285' },
+      { name: 'JavaScript', percent: 29.8, color: '#f0e54d' },
+      { name: 'CSS', percent: 11.9, color: '#3198ff' },
+      { name: 'HTML', percent: 1.1, color: '#fa7a86' }
     ],
     cards: [
-      {title: '用户访问量', amount: 1234, icon: 'fa-hourglass-end'},
-      {title: '系统消息', amount: 321, icon: 'fa-tags'},
-      {title: '数量', amount: 5000, icon: 'fa-shopping-bag'}
+      { title: '用户访问量', amount: 1234, icon: 'fa-hourglass-end' },
+      { title: '系统消息', amount: 321, icon: 'fa-tags' },
+      { title: '数量', amount: 5000, icon: 'fa-shopping-bag' }
     ],
     todos: [
-      {text: '学习Nodejs，了解相关概念', done: false},
-      {text: '拿到驾照', done: false},
-      {text: '练习英语，听英文歌', done: false},
-      {text: '学习高等数学基本概念', done: false},
-      {text: '学习PHP，会用PHP解决基础问题', done: false},
-      {text: '学习mySql数据库，了解数据库的概念', done: false}
+      { text: '学习Nodejs，了解相关概念', done: false },
+      { text: '拿到驾照', done: false },
+      { text: '练习英语，听英文歌', done: false },
+      { text: '学习高等数学基本概念', done: false },
+      { text: '学习PHP，会用PHP解决基础问题', done: false },
+      { text: '学习mySql数据库，了解数据库的概念', done: false }
     ]
   },
   getters: getters,
   actions: {
-    addTodo ({commit}, text) {
+    addTodo ({ commit }, text) {
       commit('addTodo', {
         text,
         done: false
       })
     },
-    removeTodo ({commit}, todo) {
+    removeTodo ({ commit }, todo) {
       commit('removeTodo', todo)
     },
-    toggleTodo ({commit}, todo) {
+    toggleTodo ({ commit }, todo) {
       commit('editTodo', {
         todo,
         done: !todo.done
       })
     },
-    editTodo ({commit}, {todo, value}) {
+    editTodo ({ commit }, { todo, value }) {
       commit('editTodo', {
         todo,
         text: value
       })
     },
-    toggleAll ({state, commit}, done) {
+    toggleAll ({ state, commit }, done) {
       state.todos.forEach((todo) => {
         commit('editTodo', {
           todo,
@@ -81,7 +81,7 @@ export default new Vuex.Store({
         })
       })
     },
-    clearCompleted ({state, commit}) {
+    clearCompleted ({ state, commit }) {
       //  找到数组中已经完成的项，再遍历已经完成的项，提交删除的commit
       state.todos.filter(todo => todo.done)
         .forEach(todo => {

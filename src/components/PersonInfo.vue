@@ -33,24 +33,24 @@
 <script>
 export default {
   name: 'PersonInfo',
-  data() {
+  data () {
     return {
       lastAddress: '芜湖',
       admin: '',
       role: ''
-    };
+    }
   },
   computed: {
-    lastTime() {
-      let date = new Date();
-      return date.toLocaleDateString();
+    lastTime () {
+      const date = new Date()
+      return date.toLocaleDateString()
     }
   },
   mounted () {
-    this.admin = sessionStorage.getItem('username');
-    this.role = sessionStorage.getItem('roles');
+    this.admin = sessionStorage.getItem('username')
+    this.role = sessionStorage.getItem('roles')
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

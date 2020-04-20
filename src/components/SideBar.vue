@@ -3,13 +3,13 @@
         <h3 class="logo rythm twist1">
             {{toggleSideBar ? 'VUE' : 'AUTO VUE'}}
         </h3>
-        <el-menu 
-            background-color="#324157" 
-            text-color="#ddd" 
-            :default-active="$route.path" 
+        <el-menu
+            background-color="#324157"
+            text-color="#ddd"
+            :default-active="$route.path"
             :router="isRouter"
             :unique-opened="true"
-            mode="vertical" 
+            mode="vertical"
             :collapse="toggleSideBar">
             <template v-for="item in menu">
                 <el-submenu v-if="item.children.length !== 0" :index="item.router" :key="item.router">
@@ -37,56 +37,56 @@
 </template>
 
 <script>
-import Rythm from "rythm.js";
-import music from "../assets/langlangago.mp3";
-import bus from "../plugins/bus";
-import mixins from "@/components/mixins";
-const rythm = new Rythm();
+import Rythm from 'rythm.js'
+import music from '../assets/langlangago.mp3'
+import bus from '../plugins/bus'
+import mixins from '@/components/mixins'
+const rythm = new Rythm()
 
 export default {
-  name: "sidebar",
+  name: 'sidebar',
   mixins: [mixins],
-  data() {
+  data () {
     return {
       isMusicOn: false,
       isRouter: true
-    };
-  },
-  computed: {
-    toggleSideBar() {
-      return this.$store.state.isCollapse;
-    },
-    langType() {
-      return this.$i18n.locale;
     }
   },
-  created() {
-    this.initRythm();
-    bus.$on("stopMusic", () => {
-      this.isMusicOn = false;
-      rythm.stop();
-    });
+  computed: {
+    toggleSideBar () {
+      return this.$store.state.isCollapse
+    },
+    langType () {
+      return this.$i18n.locale
+    }
+  },
+  created () {
+    this.initRythm()
+    bus.$on('stopMusic', () => {
+      this.isMusicOn = false
+      rythm.stop()
+    })
   },
   methods: {
-    initRythm() {
-      rythm.setMusic(music);
-      rythm.addRythm("twist1", "twist", 0, 10);
-      rythm.addRythm("pulse3", "pulse", 0, 10, {
+    initRythm () {
+      rythm.setMusic(music)
+      rythm.addRythm('twist1', 'twist', 0, 10)
+      rythm.addRythm('pulse3', 'pulse', 0, 10, {
         min: 0.75,
         max: 1.5
-      });
+      })
     },
-    toggleDance() {
+    toggleDance () {
       if (this.isMusicOn) {
-        this.isMusicOn = false;
-        rythm.stop();
+        this.isMusicOn = false
+        rythm.stop()
       } else {
-        this.isMusicOn = true;
-        rythm.start();
+        this.isMusicOn = true
+        rythm.start()
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>

@@ -23,31 +23,31 @@ export default {
   name: 'BaseTable',
   data () {
     return {
-        tableData: [
-            { 
-                name: '123',
-                Vue: '234',
-                React: '345',
-                Node: '456'
-            },
-            {
-                name: '567',
-                Vue: '789',
-                React: '901',
-                Node: '012' 
-            }
-        ],
-        columnForm: ['Vue','React'],
-        selectForm: ['Vue','React'],
-        columnOptions: ['Vue','React','Node'],
-        key: 1
+      tableData: [
+        {
+          name: '123',
+          Vue: '234',
+          React: '345',
+          Node: '456'
+        },
+        {
+          name: '567',
+          Vue: '789',
+          React: '901',
+          Node: '012'
+        }
+      ],
+      columnForm: ['Vue', 'React'],
+      selectForm: ['Vue', 'React'],
+      columnOptions: ['Vue', 'React', 'Node'],
+      key: 1
     }
   },
   watch: {
     selectForm (valArr) {
-        this.columnForm = this.columnOptions.filter(item => valArr.indexOf(item) > -1)
-        this.key = this.key + 1
-    }  
+      this.columnForm = this.columnOptions.filter(item => valArr.indexOf(item) > -1)
+      this.key = this.key + 1
+    }
   }
 }
 </script>

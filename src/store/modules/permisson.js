@@ -1,4 +1,4 @@
-import { constRouterMap, asyncRouterMap } from '@/router'
+import { constRouterMap, asyncRouterMap } from '@/router/router'
 
 function hasPermission (roles, route) {
   if (route.meta && route.meta.roles) {

@@ -77,13 +77,13 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.$store.dispatch('user/login', this.form)
-          .then(res => {
-            this.$router.push({
-              path: '/index'
+            .then(res => {
+              this.$router.push({
+                path: '/index'
+              })
             })
-          })
         } else {
-          this.$message({message: '请输入正确格式的账号密码',type: 'warning'});
+          this.$message({ message: '请输入正确格式的账号密码', type: 'warning' })
           return false
         }
       })

@@ -1,5 +1,5 @@
-import { loginByUsername } from '../../models/login'
-import { Message } from 'element-ui'
+import { loginByUsername } from '../../services/user'
+import { Notification } from 'element-ui'
 const user = {
   namespaced: 'true',
   state: {
@@ -22,12 +22,12 @@ const user = {
           .then(response => {
             console.log(response)
             if (response.code !== 200) {
-              Message({ message: response.msg, type: 'warning' })
+              Notification({ title: '提示', message: response.msg, type: 'warning' })
               return
             }
             sessionStorage.setItem('username', response.result.username)
             sessionStorage.setItem('token', response.result.token)
-            sessionStorage.setItem('roles', response.result.roles)
+            sessionStorage.setItem('roles', JSON.stringify(response.result.roles))
             commit('SET_TOKEN', {
               token: response.result.token
             })
@@ -35,10 +35,6 @@ const user = {
               username: response.result.username
             })
             resolve(response)
-          })
-          .catch(error => {
-            // resolve()
-            reject(error)
           })
       })
     }

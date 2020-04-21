@@ -6,9 +6,8 @@ import VueParticles from 'vue-particles'
 import 'font-awesome/css/font-awesome.min.css'
 import i18n from './plugins/lang'
 import ElementUI from 'element-ui'
-// import './plugins/theme.scss'
-import 'element-ui/lib/theme-chalk/index.css'
-import http from '@/utils/request'
+import './plugins/theme.scss'
+
 import directives from '@/directives'
 
 //  按需加载echarts图表，减小打包体积
@@ -30,7 +29,6 @@ new Vue({
   router,
   store,
   i18n,
-  echarts,
-  http,
+  // echarts,
   render: h => h(App)
 }).$mount('#app')

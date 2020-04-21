@@ -16,7 +16,7 @@ export const constRouterMap = [
   },
   {
     path: '/layout',
-    component: () => import(/* webpackChunkName: "Layout" */'@/views/Layout.vue'),
+    component: () => import(/* webpackChunkName: "Layout" */'@/components/layout/Layout.vue'),
     // redirect: '/login',
     // redirect: '/index',
     children: [
@@ -27,7 +27,7 @@ export const constRouterMap = [
           title: '首页',
           keepAlive: false
         },
-        component: () => import(/* webpackChunkName: "HomePage" */'@/views/HomePage.vue')
+        component: () => import(/* webpackChunkName: "HomePage" */'@/views/Home.vue')
       },
       {
         path: '/about',
@@ -108,7 +108,7 @@ export const constRouterMap = [
 export const asyncRouterMap = [
   {
     path: '/layout',
-    component: () => import('@/views/Layout.vue'),
+    component: () => import('@/components/layout/Layout.vue'),
     children: [
       {
         path: '/access',

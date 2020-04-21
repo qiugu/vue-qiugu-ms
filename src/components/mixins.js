@@ -3,7 +3,7 @@ const mixins = {
     return {
       menu: [
         {
-          name: '首页',
+          name: '控制台',
           name_en: 'home',
           router: '/index',
           icon: 'el-icon-star-off',

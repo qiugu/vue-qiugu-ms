@@ -35,10 +35,8 @@ module.exports = {
 
   // CSS 相关选项
   css: {
-    extract: true,
     sourceMap: false,
-    loaderOptions: {}, // 为所有的 CSS 及其预处理文件开启 CSS Modules。
-    requireModuleExtension: false
+    loaderOptions: {} // 为所有的 CSS 及其预处理文件开启 CSS Modules。
   },
 
   // 配置 webpack-dev-server 行为。

@@ -1,6 +1,6 @@
 import router from './router'
 import store from '@/store'
-import { Message } from 'element-ui'
+import { Notification } from 'element-ui'
 const whiteList = ['/login']
 
 router.beforeEach((to, from, next) => {
@@ -17,7 +17,7 @@ router.beforeEach((to, from, next) => {
             next({ ...to, replace: true })
           })
           .catch(err => {
-            Message.error({ message: err })
+            Notification.error({ title: '提示', message: err })
           })
       } else {
         next()

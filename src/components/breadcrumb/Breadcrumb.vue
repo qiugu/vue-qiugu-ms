@@ -58,7 +58,7 @@ export default {
   line-height: 60px;
   margin-left: 10px;
   .no-redirect {
-    color: #97a8be;
+    color: rgba(0,0,0,.85);
     cursor: text;
   }
   a {

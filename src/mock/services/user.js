@@ -12,7 +12,8 @@ Mock.mock('/user/getroles', options => {
     200,
     {
       username: params.username,
-      roles: {}
+      token: Mock.Random.guid(),
+      roles: []
     },
     '登录成功'
   )

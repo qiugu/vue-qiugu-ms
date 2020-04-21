@@ -6,7 +6,7 @@
 
 - [x] eslint检查
 
-- [ ] mock数据
+- [x] mock数据
 
 - [ ] 单元测试
 

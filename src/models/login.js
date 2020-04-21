@@ -5,9 +5,5 @@ export function loginByUsername (username, password) {
     username,
     password
   }
-  return http({
-    url: '/getroles',
-    method: 'post',
-    data
-  })
+  return http('/user/getroles', data)
 }

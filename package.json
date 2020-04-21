@@ -1,5 +1,5 @@
 {
-  "name": "my-vue",
+  "name": "vue-standar-ms",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -18,7 +18,7 @@
     "qs": "^6.6.0",
     "rythm.js": "^2.2.3",
     "screenfull": "^3.3.2",
-    "vue": "^2.5.17",
+    "vue": "^2.6.11",
     "vue-area-linkage": "^5.0.0",
     "vue-echarts": "^3.1.2",
     "vue-i18n": "^8.0.0",
@@ -44,36 +44,10 @@
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^6.2.2",
     "lint-staged": "^9.5.0",
-    "mockjs": "^1.0.1-beta3",
+    "mockjs": "^1.1.0",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
-    "vue-cli-plugin-element": "^1.0.0",
-    "vue-template-compiler": "^2.5.17"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "@vue/standard"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "overrides": [
-      {
-        "files": [
-          "**/__tests__/*.{j,t}s?(x)",
-          "**/tests/unit/**/*.spec.{j,t}s?(x)"
-        ],
-        "env": {
-          "mocha": true
-        }
-      }
-    ]
+    "vue-template-compiler": "^2.6.11"
   },
   "postcss": {
     "plugins": {

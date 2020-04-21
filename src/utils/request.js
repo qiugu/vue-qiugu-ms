@@ -5,13 +5,7 @@ import store from '@/store'
 import qs from 'qs'
 
 const service = axios.create({
-  headers: {
-    'X-Requested-With': 'XMLHttpRequest',
-    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-  }
-  // paramsSerializer: function(params) {
-  //     return qs.stringify(params)
-  // }
+  timeout: 3000
 })
 
 // request interceptor
@@ -59,4 +53,11 @@ service.interceptors.response.use(
   }
 )
 
-export default service
+// package http request
+const http = async (url, params) => {
+  const res = await service.post(url, params)
+
+  return res.data
+}
+
+export default http

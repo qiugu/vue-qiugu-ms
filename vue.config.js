@@ -43,7 +43,7 @@ module.exports = {
 
   // 配置 webpack-dev-server 行为。
   devServer: {
-    port: 3001,
-    proxy: 'http://localhost:8080'
+    port: 3001
+    // proxy: 'http://localhost:8080'
   }
 }

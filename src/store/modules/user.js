@@ -1,4 +1,4 @@
-import { loginByUsername } from '@/api/login'
+import { loginByUsername } from '../../models/login'
 import { Message } from 'element-ui'
 const user = {
   namespaced: 'true',
@@ -17,44 +17,24 @@ const user = {
   actions: {
     login ({ commit }, userInfo) {
       const username = userInfo.username.trim()
-      console.log(userInfo.username)
-      console.log(userInfo.password)
-      fetch('/user/login', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          username: username,
-          password: userInfo.password
-        })
-      })
-        .then(res => res.json())
-        .then(res => {
-          console.log(res)
-        })
-        .catch(error => {
-          console.log(error)
-        })
       return new Promise((resolve, reject) => {
         loginByUsername(username, userInfo.password)
           .then(response => {
             console.log(response)
-            const data = response.data
-            if (response.data.resultCode !== 200) {
-              Message({ message: response.data.resultMsg, type: 'warning' })
+            if (response.code !== 200) {
+              Message({ message: response.msg, type: 'warning' })
               return
             }
-            sessionStorage.setItem('username', response.data.data.username)
-            sessionStorage.setItem('token', response.data.data.token)
-            sessionStorage.setItem('roles', response.data.data.roles)
+            sessionStorage.setItem('username', response.result.username)
+            sessionStorage.setItem('token', response.result.token)
+            sessionStorage.setItem('roles', response.result.roles)
             commit('SET_TOKEN', {
-              token: response.data.data.token
+              token: response.result.token
             })
             commit('SET_USER', {
-              username: response.data.data.username
+              username: response.result.username
             })
-            resolve(data)
+            resolve(response)
           })
           .catch(error => {
             // resolve()

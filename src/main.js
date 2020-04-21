@@ -6,7 +6,8 @@ import VueParticles from 'vue-particles'
 import 'font-awesome/css/font-awesome.min.css'
 import i18n from './plugins/lang'
 import ElementUI from 'element-ui'
-import './plugins/theme.scss'
+// import './plugins/theme.scss'
+import 'element-ui/lib/theme-chalk/index.css'
 import http from '@/utils/request'
 import directives from '@/directives'
 
@@ -17,11 +18,12 @@ import 'echarts/lib/component/legend'
 import 'echarts/lib/component/title'
 import 'echarts/lib/component/tooltip'
 
+import './mock/index'
+
 Vue.use(ElementUI)
 Vue.use(VueParticles)
 Vue.config.productionTip = false
 Vue.prototype.$echarts = echarts
-Vue.prototype.$http = http
 directives(Vue)
 
 new Vue({

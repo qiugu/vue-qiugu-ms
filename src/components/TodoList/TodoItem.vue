@@ -1,12 +1,30 @@
 <template>
-    <li class="todo" :class="{completed: todo.done,editing: editing}">
-        <div class="view">
-            <input type="checkbox" class="toggle" :checked="todo.done" @change="toggleTodo(todo)">
-            <label v-text="todo.text" class="todo-content" @dblclick="editing=true"></label>
-            <button @click="removeTodo(todo)" class="destroy"></button>
-        </div>
-        <input type="text" class="edit" v-show="editing" v-focus="editing" :value="todo.text" @keyup.enter="doneEdit" @keyup.esc="cancelEdit" @blur="doneEdit"/>
-    </li>
+  <li class="todo" :class="{ completed: todo.done, editing: editing }">
+    <div class="view">
+      <input
+        type="checkbox"
+        class="toggle"
+        :checked="todo.done"
+        @change="toggleTodo(todo)"
+      />
+      <label
+        v-text="todo.text"
+        class="todo-content"
+        @dblclick="editing = true"
+      ></label>
+      <button @click="removeTodo(todo)" class="destroy"></button>
+    </div>
+    <input
+      type="text"
+      class="edit"
+      v-show="editing"
+      v-focus="editing"
+      :value="todo.text"
+      @keyup.enter="doneEdit"
+      @keyup.esc="cancelEdit"
+      @blur="doneEdit"
+    />
+  </li>
 </template>
 
 <script>
@@ -34,7 +52,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
+    ...mapActions('user', [
       'editTodo',
       // 点击复选框，改变事项的完成状态
       'toggleTodo',

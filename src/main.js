@@ -7,28 +7,17 @@ import 'font-awesome/css/font-awesome.min.css'
 import i18n from './plugins/lang'
 import ElementUI from 'element-ui'
 import './plugins/theme.scss'
-
 import directives from '@/directives'
-
-//  按需加载echarts图表，减小打包体积
-import echarts from 'echarts/lib/echarts'
-import 'echarts/lib/chart/line'
-import 'echarts/lib/component/legend'
-import 'echarts/lib/component/title'
-import 'echarts/lib/component/tooltip'
-
 import './mock/index'
 
 Vue.use(ElementUI)
 Vue.use(VueParticles)
 Vue.config.productionTip = false
-Vue.prototype.$echarts = echarts
 directives(Vue)
 
 new Vue({
   router,
   store,
   i18n,
-  // echarts,
   render: h => h(App)
 }).$mount('#app')

@@ -1,27 +1,38 @@
 <template>
   <div class="home">
-    <el-row>
+    <el-row :gutter="20">
       <el-col :span="8">
-        <div class="info">
-          <el-card>
-            <div slot="header" class="clearfix">
-              <img src="../assets/img.jpg" alt="admin" />
-              <div class="userinfo">
-                <h2>{{ admin }}</h2>
-                <span>{{ role }}</span>
-              </div>
+        <el-card style="margin-bottom: 20px;">
+          <div slot="header" class="clearfix">
+            <img src="@/assets/img.jpg" alt="admin" />
+            <div class="userinfo">
+              <h2>{{ admin }}</h2>
+              <span>{{ role }}</span>
             </div>
-            <el-row type="flex" justify="space-between">
-              <el-col :span="12">上次登录时间</el-col>
-              <el-col :span="8">{{ lastTime }}</el-col>
-            </el-row>
-            <el-row type="flex" justify="space-between">
-              <el-col :span="12">上次登录地点</el-col>
-              <el-col :span="8">{{ lastAddress }}</el-col>
-            </el-row>
-          </el-card>
-        </div>
-        <ProgressLanguage />
+          </div>
+          <el-row type="flex" justify="space-between">
+            <el-col :span="12">上次登录时间</el-col>
+            <el-col :span="8">{{ lastTime }}</el-col>
+          </el-row>
+          <el-row type="flex" justify="space-between">
+            <el-col :span="12">上次登录地点</el-col>
+            <el-col :span="8">{{ lastAddress }}</el-col>
+          </el-row>
+        </el-card>
+        <el-card>
+          <div slot="header" class="title">
+            <span>{{ title }}</span>
+          </div>
+          <div class="text">
+            <div v-for="item in progressList" :key="item.id">
+              <span>{{ item.name }}</span>
+              <el-progress
+                :percentage="item.percent"
+                :color="item.color"
+              ></el-progress>
+            </div>
+          </div>
+        </el-card>
       </el-col>
       <el-col :span="16">
         <div class="statistics-wrapper">
@@ -38,29 +49,36 @@
             </div>
           </div>
         </div>
-        <TodoList />
+        <TodoList :todos="todos" />
       </el-col>
+    </el-row>
+    <el-row style="margin-top: 20px;height: 400px;">
+      <line-chart :data="options"/>
     </el-row>
   </div>
 </template>
 
 <script>
-import ProgressLanguage from '../components/ProgressLanguage'
-import TodoList from '../components/TodoList/TodoList'
+import TodoList from '@/components/TodoList/TodoList'
+import lineChart from '@/components/lineChart/index'
 import { getStatistics } from '@/services/home'
 
 export default {
   name: 'HomePage',
   components: {
-    ProgressLanguage,
-    TodoList
+    TodoList,
+    lineChart
   },
   data () {
     return {
       lastAddress: '芜湖',
       admin: '',
       role: '',
-      statistics: []
+      statistics: [],
+      title: '',
+      progressList: [],
+      todos: [],
+      options: {}
     }
   },
   computed: {
@@ -82,7 +100,12 @@ export default {
     async fetchData () {
       const res = await getStatistics()
       if (res.code === 200) {
-        this.statistics = res.result
+        this.statistics = res.result.statistics
+        this.lastAddress = res.result.userData.city
+        this.progressList = res.result.proportion
+        this.title = res.result.title
+        this.todos = res.result.todos
+        this.$store.commit('user/SET_TODO', this.todos)
       }
     }
   }
@@ -91,35 +114,35 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  .info {
-    margin-bottom: 20px;
-    .clearfix {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      & img {
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        border-radius: 50%;
-      }
-      & .userinfo {
-        padding-right: 10%;
-      }
-      & .userinfo h2 {
-        margin: 0;
-        font-size: 30px;
-      }
-      & .userinfo span {
-        font-size: 14px;
-        color: #999;
+  .clearfix {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & img {
+      border-radius: 50%;
+      cursor: pointer;
+      &:hover {
+        transform: rotate(666turn);
+        transition-delay: 1s;
+        transition-property: all;
+        transition-duration: 59s;
+        transition-timing-function: cubic-bezier(.34, 0, .84, 1);
       }
     }
-  }
-  .todoapp {
-    margin: 20px 0 0 40px;
+    & .userinfo {
+      padding-right: 10%;
+    }
+    & .userinfo h2 {
+      margin: 0;
+      font-size: 30px;
+    }
+    & .userinfo span {
+      font-size: 14px;
+      color: #999;
+    }
   }
   .statistics-wrapper {
-    margin: 0 0 0 40px;
+    margin-bottom: 20px;
     display: flex;
     .card-item {
       flex: 1;

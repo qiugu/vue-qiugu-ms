@@ -1,5 +1,5 @@
 import http from '@/utils/request'
 
-export function getStatistics (username, password) {
+export function getStatistics () {
   return http('/home/statistics', {})
 }

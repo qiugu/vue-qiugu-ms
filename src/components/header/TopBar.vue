@@ -37,22 +37,16 @@
         </div>
         <img src="@/assets/img.jpg" alt="zhaopian" class="author-img" />
 
-        <el-dropdown @command="handleCommand">
+        <el-dropdown @command="handleCommand" placement="top-end">
           <span class="el-dropdown-link animated fadeIn">
             {{ userName }} <i class="el-icon-caret-bottom"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <a href="#">
-              <el-dropdown-item command="personInfo">个人信息</el-dropdown-item>
-            </a>
-            <a href="https://github.com/qiugu/vue-qg-ms" target="_blank">
-              <el-dropdown-item>项目仓库</el-dropdown-item>
-            </a>
-            <a href="#">
-              <el-dropdown-item divided command="logout"
-                >退出登录</el-dropdown-item
-              >
-            </a>
+            <el-dropdown-item command="personInfo">个人信息</el-dropdown-item>
+            <el-dropdown-item>
+              <a href="https://github.com/qiugu/vue-qg-ms" rel="nopener" class="github-link" target="_blank">项目仓库</a>
+            </el-dropdown-item>
+            <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -179,14 +173,14 @@ export default {
     height: 40px;
     border-radius: 50%;
   }
-  .el-dropdown {
-    margin-right: 40px;
-    line-height: 60px;
-  }
   .el-dropdown-link {
-    color: #fff;
+    color: rgba(0, 0, 0, 0.85);
     cursor: pointer;
     margin-left: 10px;
+    line-height: 60px;
+    a {
+      text-decoration: none;
+    }
   }
   .btn-bell-badge {
     position: absolute;
@@ -201,5 +195,9 @@ export default {
   .btn-bell {
     position: relative;
   }
+}
+.github-link {
+  color: inherit;
+  text-decoration: none;
 }
 </style>

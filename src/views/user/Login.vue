@@ -124,8 +124,7 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 .bg {
   position: relative;
   overflow: hidden;
@@ -134,40 +133,40 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("../assets/sky.jpg") no-repeat;
+  background: url("~@/assets/sky.jpg") no-repeat;
   background-size: cover;
-}
-#particles-js {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.login-wrap {
-  width: 330px;
-  padding: 20px;
-  z-index: 3;
-  text-align: center;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  margin-right: -37%;
-  background: rgba(216, 222, 229, 0.5);
-}
-h3 {
-  margin-bottom: 5px;
-  margin-top: 0;
-  color: #ebedef;
-}
-form {
-  margin-top: 25px;
-}
-a {
-  color: #42b983;
-}
-button {
-  width: 100%;
-  font-weight: 600;
+  #particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .login-wrap {
+    width: 330px;
+    padding: 20px;
+    z-index: 3;
+    text-align: center;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-right: -37%;
+    background: rgba(216, 222, 229, 0.5);
+  }
+  h3 {
+    margin-bottom: 5px;
+    margin-top: 0;
+    color: #ebedef;
+  }
+  form {
+    margin-top: 25px;
+  }
+  a {
+    color: #42b983;
+  }
+  button {
+    width: 100%;
+    font-weight: 600;
+  }
 }
 </style>

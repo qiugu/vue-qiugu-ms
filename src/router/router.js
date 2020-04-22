@@ -12,7 +12,7 @@ export const constRouterMap = [
       title: '登录',
       keepAlive: false
     },
-    component: () => import(/* webpackChunkName: "Login" */'@/views/Login.vue')
+    component: () => import(/* webpackChunkName: "Login" */'@/views/user/Login.vue')
   },
   {
     path: '/layout',
@@ -27,7 +27,7 @@ export const constRouterMap = [
           title: '首页',
           keepAlive: false
         },
-        component: () => import(/* webpackChunkName: "HomePage" */'@/views/Home.vue')
+        component: () => import(/* webpackChunkName: "HomePage" */'@/views/home/Home.vue')
       },
       {
         path: '/about',

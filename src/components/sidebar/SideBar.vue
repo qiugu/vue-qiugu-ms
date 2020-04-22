@@ -61,7 +61,7 @@
 import Rythm from 'rythm.js'
 import music from '../../assets/langlangago.mp3'
 import bus from '../../plugins/bus'
-import mixins from '@/components/mixins'
+import mixins from './mixins'
 const rythm = new Rythm()
 
 export default {

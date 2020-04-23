@@ -53,14 +53,14 @@
       </el-col>
     </el-row>
     <el-row style="margin-top: 20px;height: 400px;">
-      <line-chart :data="options"/>
+      <line-chart :dataOptions="options"/>
     </el-row>
   </div>
 </template>
 
 <script>
 import TodoList from '@/components/TodoList/TodoList'
-import lineChart from '@/components/lineChart/index'
+import lineChart from '@/components/charts/LineChart'
 import { getStatistics } from '@/services/home'
 
 export default {
@@ -105,6 +105,7 @@ export default {
         this.progressList = res.result.proportion
         this.title = res.result.title
         this.todos = res.result.todos
+        this.options = res.result.lines
         this.$store.commit('user/SET_TODO', this.todos)
       }
     }

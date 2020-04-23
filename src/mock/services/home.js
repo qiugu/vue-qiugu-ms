@@ -2,6 +2,16 @@ import Mock from 'mockjs'
 import { response } from '../util'
 
 Mock.mock('/home/statistics', options => {
+  // 每天的毫秒数
+  const onedays = (day) => 3600 * 24 * 1000 * day
+  const timeline = []
+  // 获得当前日期的前19天的日期组成的数组
+  // 日期对应的值
+  for (let i = 0; i < 20; i++) {
+    timeline[i] = new Date(Date.now() - onedays(i)).toLocaleDateString()
+  }
+  const timeVal = () => timeline.map(() => Mock.Random.integer(1, 700))
+
   return response(
     200,
     {
@@ -28,7 +38,14 @@ Mock.mock('/home/statistics', options => {
         { id: Mock.Random.id(), text: Mock.Random.csentence(10, 100), done: false },
         { id: Mock.Random.id(), text: Mock.Random.csentence(10, 100), done: false },
         { id: Mock.Random.id(), text: Mock.Random.csentence(10, 100), done: false }
-      ]
+      ],
+      lines: {
+        line: timeline,
+        value: [
+          timeVal(),
+          timeVal()
+        ]
+      }
     },
     '成功'
   )

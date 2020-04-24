@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <el-row :gutter="20">
-      <el-col :span="8">
-        <el-card style="margin-bottom: 20px;">
+      <el-col :lg="8">
+        <el-card class="card-margin">
           <div slot="header" class="clearfix">
             <img src="@/assets/img.jpg" alt="admin" />
             <div class="userinfo">
@@ -19,7 +19,7 @@
             <el-col :span="8">{{ lastAddress }}</el-col>
           </el-row>
         </el-card>
-        <el-card>
+        <el-card class="card-margin">
           <div slot="header" class="title">
             <span>{{ title }}</span>
           </div>
@@ -34,10 +34,9 @@
           </div>
         </el-card>
       </el-col>
-      <el-col :span="16">
+      <el-col :lg="16">
         <div class="statistics-wrapper">
           <div
-            :span="8"
             v-for="card in statistics"
             :key="card.id"
             class="card-item"
@@ -49,11 +48,16 @@
             </div>
           </div>
         </div>
-        <TodoList :todos="todos" />
+        <line-chart :dataOptions="options" style="height: 410px;overflow: hidden;margin-bottom: 20px;"/>
       </el-col>
     </el-row>
-    <el-row style="margin-top: 20px;height: 400px;">
-      <line-chart :dataOptions="options"/>
+    <el-row :gutter="20">
+      <el-col :lg="8">
+        <word-chart style="height: 300px;margin-bottom: 20px;"/>
+      </el-col>
+      <el-col :lg="8">
+        <TodoList :todos="todos" />
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -61,13 +65,15 @@
 <script>
 import TodoList from '@/components/TodoList/TodoList'
 import lineChart from '@/components/charts/LineChart'
+import wordChart from '@/components/charts/WordChart'
 import { getStatistics } from '@/services/home'
 
 export default {
   name: 'HomePage',
   components: {
     TodoList,
-    lineChart
+    lineChart,
+    wordChart
   },
   data () {
     return {
@@ -115,6 +121,9 @@ export default {
 
 <style lang="scss" scoped>
 .home {
+  .card-margin {
+    margin-bottom: 20px;
+  }
   .clearfix {
     display: flex;
     justify-content: space-between;

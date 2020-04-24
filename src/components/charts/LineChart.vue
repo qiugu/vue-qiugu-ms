@@ -1,6 +1,6 @@
 <template>
-  <div class="line-chart">
-    <v-chart ref="lines" :options="options" />
+  <div class="chart">
+    <v-chart ref="chart" :options="options" style="width: 100%;height: 100%;" />
   </div>
 </template>
 
@@ -11,10 +11,13 @@ import 'echarts/lib/component/legend'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/grid'
 
+import mixins from './mixins'
+
 export default {
   components: {
     'v-chart': ECharts
   },
+  mixins: [mixins],
   props: {
     dataOptions: {
       type: Object,
@@ -30,11 +33,7 @@ export default {
       lineY: [],
       charts: {
         unit: 'Kbps',
-        names: ['出口', '入口'],
-        value: [
-          [451, 352, 303, 534, 95, 236, 217, 328, 159, 151, 231, 192, 453, 524, 165, 236, 527, 328, 129, 530],
-          [360, 545, 80, 192, 330, 580, 192, 80, 250, 453, 352, 28, 625, 345, 65, 325, 468, 108, 253, 98]
-        ]
+        names: ['出口', '入口']
       }
     }
   },
@@ -44,14 +43,6 @@ export default {
         this.generateCharts()
       }
     }
-  },
-  mounted () {
-    window.addEventListener('resize', () => {
-      this.$refs.lines.resize(this.options)
-    })
-  },
-  destroyed () {
-    window.removeEventListener('resize')
   },
   methods: {
     generateCharts () {
@@ -126,7 +117,7 @@ export default {
 
       // 定时刷新图标
       this.interval = setInterval(() => {
-        this.$refs.lines.mergeOptions({
+        this.$refs.chart.mergeOptions({
           legend: {
             selected: {
               出口: false,
@@ -134,7 +125,7 @@ export default {
             }
           }
         })
-        this.$refs.lines.mergeOptions({
+        this.$refs.chart.mergeOptions({
           legend: {
             selected: {
               出口: true,
@@ -147,13 +138,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.line-chart {
-  height: 100%;
-}
-.echarts {
-  width: 100%;
-  height: 100%;
-}
-</style>

@@ -32,12 +32,12 @@ Mock.mock('/home/statistics', options => {
         city: Mock.Random.city()
       },
       todos: [
-        { id: Mock.Random.id(), text: Mock.Random.csentence(10, 100), done: false },
-        { id: Mock.Random.id(), text: Mock.Random.csentence(10, 100), done: false },
-        { id: Mock.Random.id(), text: Mock.Random.csentence(10, 100), done: false },
-        { id: Mock.Random.id(), text: Mock.Random.csentence(10, 100), done: false },
-        { id: Mock.Random.id(), text: Mock.Random.csentence(10, 100), done: false },
-        { id: Mock.Random.id(), text: Mock.Random.csentence(10, 100), done: false }
+        { id: Mock.Random.id(), text: Mock.Random.csentence(10, 30), done: false },
+        { id: Mock.Random.id(), text: Mock.Random.csentence(10, 30), done: false },
+        { id: Mock.Random.id(), text: Mock.Random.csentence(10, 30), done: false },
+        { id: Mock.Random.id(), text: Mock.Random.csentence(10, 30), done: false },
+        { id: Mock.Random.id(), text: Mock.Random.csentence(10, 30), done: false },
+        { id: Mock.Random.id(), text: Mock.Random.csentence(10, 30), done: false }
       ],
       lines: {
         line: timeline,

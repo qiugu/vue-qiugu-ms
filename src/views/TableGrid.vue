@@ -11,13 +11,15 @@
         :deleteInsideData="deleteData"
         @save-add="saveAdd"
         @save-update="saveUpdate"
-        @save-delete="saveDelete">
+        @save-delete="saveDelete"
+      >
       </table-edit>
     </el-card>
   </div>
 </template>
 <script>
 import TableEdit from '../components/EditTable/TableEdit'
+import { getEditorTable } from '@/services/table'
 
 export default {
   components: {
@@ -31,26 +33,26 @@ export default {
       ],
       columnsConfig: [
         {
-          prop: 'name',
-          label: '借款银行名称',
+          prop: 'user',
+          label: '用户名',
           options: 'input',
           align: 'center'
         },
         {
-          prop: 'open',
-          label: '授信额度(万元)',
+          prop: 'ip',
+          label: 'IP地址',
           options: 'input',
           align: 'center'
         },
         {
-          prop: 'email',
-          label: '借款金额（万元）',
+          prop: 'count',
+          label: '访问次数',
           options: 'input',
           align: 'center'
         },
         {
-          prop: 'createTime',
-          label: '起止日期',
+          prop: 'date',
+          label: '访问日期',
           options: 'date',
           align: 'center'
         },
@@ -84,7 +86,7 @@ export default {
 
   mounted () {
     // 初始化表格数据
-    this.init()
+    this.getTableData()
   },
 
   methods: {
@@ -102,23 +104,13 @@ export default {
       this.fileList = tempData
       this.getUploadGsjkqk()
     },
-    // 项目初始化数据
-    init () {
-      const self = this
-      self.getGsjkqk()
-    },
     // 初始化表格数据
-    getGsjkqk () {
-      this.$http({
-        url: '/user/edit',
-        method: 'post'
-      }).then(response => {
-        if (response.data.errno === 0) {
-          this.tableData = response.data.data
-        }
-      }).catch(e => {
-        console.log(e)
-      })
+    async getTableData () {
+      const res = await getEditorTable()
+
+      if (res.code === 200) {
+        this.tableData = res.result
+      }
     },
 
     // 组件数据方法处理
@@ -165,13 +157,20 @@ export default {
       const self = this
       if (self.editIndex !== null) {
         // 表格添加数据需要reload table这里删除
-        if (row.jkyhmc === '' || row.jkyhmc == null || row.jkyhmc === undefined) {
+        if (
+          row.jkyhmc === '' ||
+          row.jkyhmc == null ||
+          row.jkyhmc === undefined
+        ) {
           this.$message({ message: '请填写借款银行名称', type: 'warning' })
           return null
         }
         if (row.sxed !== '' && row.sxed !== null && row.sxed !== undefined) {
           if (!/^[1-9]\d*\d*|[1-9]\d*$/.test(row.sxed)) {
-            this.$message({ message: '授信额度需录入正确格式', type: 'warning' })
+            this.$message({
+              message: '授信额度需录入正确格式',
+              type: 'warning'
+            })
             return null
           }
         } else {
@@ -180,7 +179,10 @@ export default {
         }
         if (row.jkje !== '' && row.jkje !== null && row.jkje !== undefined) {
           if (!/^[1-9]\d*\d*|[1-9]\d*$/.test(row.jkje)) {
-            this.$message({ message: '借款金额需录入正确格式', type: 'warning' })
+            this.$message({
+              message: '借款金额需录入正确格式',
+              type: 'warning'
+            })
             return null
           }
         } else {
@@ -188,7 +190,10 @@ export default {
           return null
         }
         if (self.editIndex !== index) {
-          this.$message({ message: '请先保存或取消当前编辑数据', type: 'warning' })
+          this.$message({
+            message: '请先保存或取消当前编辑数据',
+            type: 'warning'
+          })
           return null
         }
         self.editStatus(index, row)
@@ -204,7 +209,10 @@ export default {
     // 添加按钮
     addRow () {
       if (this.editIndex !== null) {
-        this.$message({ message: '请先保存或取消当前编辑数据', type: 'warning' })
+        this.$message({
+          message: '请先保存或取消当前编辑数据',
+          type: 'warning'
+        })
         return
       }
       this.tableData.unshift(this.editRow)
@@ -216,7 +224,10 @@ export default {
       const self = this
       if (this.editIndex != null) {
         // 编辑状态不保存
-        this.$message({ message: '请先保存或取消当前编辑数据', type: 'warning' })
+        this.$message({
+          message: '请先保存或取消当前编辑数据',
+          type: 'warning'
+        })
         return
       }
       this.loadingStatus = true
@@ -243,7 +254,10 @@ export default {
     // 删除按钮
     deleteRow (index, row) {
       if (this.editIndex !== null) {
-        this.$message({ message: '请先保存或取消当前编辑数据', type: 'warning' })
+        this.$message({
+          message: '请先保存或取消当前编辑数据',
+          type: 'warning'
+        })
         return
       }
       this.$confirm('确认删除?', '提示', {
@@ -261,8 +275,5 @@ export default {
     }
   }
 }
-
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>

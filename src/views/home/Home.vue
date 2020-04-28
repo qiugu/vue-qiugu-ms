@@ -56,6 +56,9 @@
         <word-chart style="height: 300px;margin-bottom: 20px;"/>
       </el-col>
       <el-col :lg="8">
+        <liquid-chart style="height: 300px;margin-bottom: 20px;"/>
+      </el-col>
+      <el-col :lg="8">
         <TodoList :todos="todos" />
       </el-col>
     </el-row>
@@ -66,6 +69,7 @@
 import TodoList from '@/components/TodoList/TodoList'
 import lineChart from '@/components/charts/LineChart'
 import wordChart from '@/components/charts/WordChart'
+import liquidChart from '@/components/charts/LiquidChart'
 import { getStatistics } from '@/services/home'
 
 export default {
@@ -73,7 +77,8 @@ export default {
   components: {
     TodoList,
     lineChart,
-    wordChart
+    wordChart,
+    liquidChart
   },
   data () {
     return {

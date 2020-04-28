@@ -1,13 +1,16 @@
 export default {
   mounted () {
-    window.addEventListener('resize', this.throttle(this.resizeCallback))
+    window.addEventListener('resize', this.resizeCallback)
   },
   destroyed () {
-    window.removeEventListener('resize', this.throttle(this.resizeCallback))
+    // 销毁事件监听需要引用同一监听方法
+    window.removeEventListener('resize', this.resizeCallback)
   },
   methods: {
     resizeCallback () {
-      this.$refs.chart.resize(this.options)
+      this.throttle(() => {
+        this.$refs.chart.resize(this.options)
+      })()
     },
     // 节流函数，针对resize事件
     // 闭包函数需要将变量置为null

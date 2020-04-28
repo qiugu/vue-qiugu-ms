@@ -44,6 +44,11 @@ export default {
       }
     }
   },
+  destroyed () {
+    if (this.interval) {
+      clearInterval(this.interval)
+    }
+  },
   methods: {
     generateCharts () {
       // 生成y轴的数据

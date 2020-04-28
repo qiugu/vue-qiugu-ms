@@ -139,9 +139,6 @@ export default {
       a {
         text-decoration: none;
       }
-      &:not(.active):hover {
-        background: #7546c9;
-      }
       &.active {
         color: #fff;
         background: #7546c9;

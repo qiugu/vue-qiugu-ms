@@ -11,8 +11,14 @@ export const m = {
     button: 'Login'
   },
   topbar: {
-    sayHi: 'Hi',
-    logout: 'Logout'
+    repository: 'Repository',
+    logout: 'Logout',
+    notification: 'message',
+    message: 'There are {message} unread messages',
+    full_screen: 'FullScreen',
+    cancel_full: 'CancelScreen',
+    language: 'ToggleLanguage',
+    support: 'Your browser doesn\'t support full screen'
   },
   menu: {
     project: 'Projects',

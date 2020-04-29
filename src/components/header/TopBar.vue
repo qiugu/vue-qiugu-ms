@@ -10,14 +10,14 @@
       </div>
       <div class="right-row hidden-sm-and-down">
         <div class="btn-language" @click="toggleLanguage">
-          <el-tooltip effect="dark" content="切换语言" placement="bottom">
+          <el-tooltip effect="dark" :content="`${$t('m.topbar.language')}`" placement="bottom">
             <i class="fa fa-language"></i>
           </el-tooltip>
         </div>
         <div class="btn-fullscreen" @click="toggleFullscreen">
           <el-tooltip
             effect="dark"
-            :content="fullscreen ? `取消全屏` : `全屏`"
+            :content="fullscreen ? `${$t('m.topbar.cancel_screen')}` : `${$t('m.topbar.full_screen')}`"
             placement="bottom"
           >
             <i class="fa fa-arrows-alt"></i>
@@ -26,7 +26,7 @@
         <div class="btn-bell">
           <el-tooltip
             effect="dark"
-            :content="message ? `有${message}条未读消息` : `消息中心`"
+            :content="message ? `${$t('m.topbar.message', { message })}` : `${$t('m.login.notification')}`"
             placement="bottom"
           >
             <router-link to="/layout/about">
@@ -43,9 +43,9 @@
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>
-              <a href="https://github.com/qiugu/vue-qiugu-ms" rel="nopener" class="github-link" target="_blank">项目仓库</a>
+              <a href="https://github.com/qiugu/vue-qiugu-ms" rel="nopener" class="github-link" target="_blank">{{ $t("m.topbar.repository") }}</a>
             </el-dropdown-item>
-            <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
+            <el-dropdown-item divided command="logout">{{ $t("m.topbar.logout") }}</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -76,11 +76,28 @@ export default {
       return this.$store.state.isCollapse
     }
   },
+  mounted () {
+    if (document.body.clientWidth < 900) {
+      this.$store.commit('toggleSiderBar')
+    }
+  },
+  watch: {
+    $route (to, from) {
+      this.pathName = this.$route.path.substring(1)
+      this.nowPath = this.$route.path
+    }
+  },
   methods: {
     ...mapMutations(['toggleSiderBar']),
     toggleLanguage () {
       const locale = this.$i18n.locale
-      locale === 'zh' ? (this.$i18n.locale = 'en') : (this.$i18n.locale = 'zh')
+      if (locale === 'zh') {
+        this.$i18n.locale = 'en'
+        localStorage.setItem('locale', 'en')
+      } else {
+        this.$i18n.locale = 'zh'
+        localStorage.setItem('locale', 'zh')
+      }
       const info =
         locale === 'en' ? '切换成功' : 'change language successfully'
       this.$message.success(info)
@@ -88,7 +105,7 @@ export default {
     toggleFullscreen () {
       if (!screenfull) {
         this.$message({
-          message: '您的浏览器不支持全屏',
+          message: this.$t('m.tobar.support'),
           type: 'warning'
         })
         return false
@@ -104,17 +121,6 @@ export default {
         this.$router.push('/login')
         window.location.reload()
       }
-    }
-  },
-  mounted () {
-    if (document.body.clientWidth < 900) {
-      this.$store.commit('toggleSiderBar')
-    }
-  },
-  watch: {
-    $route (to, from) {
-      this.pathName = this.$route.path.substring(1)
-      this.nowPath = this.$route.path
     }
   }
 }

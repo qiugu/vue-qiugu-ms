@@ -12,7 +12,7 @@
       >
         <el-form-item prop="username">
           <el-input
-            placeholder="用户名"
+            :placeholder="$t('m.login.name_holder')"
             suffix-icon="el-icon-message"
             v-model="form.username"
           ></el-input>
@@ -21,20 +21,18 @@
           <el-input
             type="password"
             suffix-icon="el-icon-goods"
-            placeholder="密码"
+            :placeholder="$t('m.login.name_holder')"
             v-model="form.password"
           ></el-input>
         </el-form-item>
         <el-form-item>
           <el-row type="flex" justify="space-between">
-            <el-checkbox v-model="isMemory" style="color: #eee;"
-              >记住密码</el-checkbox
-            >
-            <a href="" @click.prevent="openMsg" style="color: #eee">忘记密码</a>
+            <el-checkbox v-model="isMemory" style="color: #eee;">{{ $t("m.login.remember") }}</el-checkbox>
+            <a href="" @click.prevent="openMsg" style="color: #eee">{{ $t("m.login.forget") }}</a>
           </el-row>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" :loading="loading" @click="login('form')">登录</el-button>
+          <el-button type="primary" :loading="loading" @click="login('form')">{{ $t("m.login.button") }}</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -76,14 +74,14 @@ export default {
         username: [
           {
             required: true,
-            message: '请输入您的账号',
+            message: this.$t('m.login.name_tip'),
             trigger: 'blur'
           }
         ],
         password: [
           {
             required: true,
-            message: '请输入您的密码',
+            message: this.$t('m.login.password_tip'),
             trigger: 'blur'
           }
         ]

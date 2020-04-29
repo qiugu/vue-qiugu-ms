@@ -28,8 +28,6 @@ module.exports = {
           minRatio: 0.8
         })
       )
-      const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-      config.plugins.push(new BundleAnalyzerPlugin())
     }
   },
 

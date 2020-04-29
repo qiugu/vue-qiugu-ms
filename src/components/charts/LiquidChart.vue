@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import 'echarts-liquidfill/dist/echarts-liquidfill'
+import 'echarts-liquidfill/dist/echarts-liquidfill.min.js'
 import ECharts from 'vue-echarts/components/ECharts'
 
 import 'echarts/lib/component/title'

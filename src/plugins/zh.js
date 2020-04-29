@@ -11,7 +11,7 @@ export const m = {
     button: '登录'
   },
   topbar: {
-    repository: '嗨',
+    repository: '项目仓库',
     logout: '退出',
     notification: '消息中心',
     message: '有{message}条未读消息',

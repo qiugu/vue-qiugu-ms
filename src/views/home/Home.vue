@@ -103,7 +103,7 @@ export default {
     const role = JSON.parse(sessionStorage.getItem('roles'))
 
     if (role.length !== 0) {
-      this.role = role
+      this.role = role[0]
     }
     this.fetchData()
   },

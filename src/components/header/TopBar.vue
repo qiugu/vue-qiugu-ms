@@ -43,7 +43,7 @@
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>
-              <a href="https://github.com/qiugu/vue-qg-ms" rel="nopener" class="github-link" target="_blank">项目仓库</a>
+              <a href="https://github.com/qiugu/vue-qiugu-ms" rel="nopener" class="github-link" target="_blank">项目仓库</a>
             </el-dropdown-item>
             <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>

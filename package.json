@@ -61,6 +61,7 @@
     "last 2 versions",
     "not ie <= 8"
   ],
+  "repository": "https://github.com/qiugu/vue-qiugu-ms.git",
   "gitHooks": {
     "pre-commit": "lint-staged"
   },

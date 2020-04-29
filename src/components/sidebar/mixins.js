@@ -22,21 +22,6 @@ const mixins = {
           icon: 'el-icon-s-grid',
           children: [
             {
-              name: '开发备忘',
-              name_en: 'Notes',
-              router: '/about'
-            },
-            {
-              name: '表单验证',
-              name_en: 'Validate',
-              router: '/validate'
-            },
-            {
-              name: '动态表格',
-              name_en: 'DynamicTable',
-              router: '/dynamic'
-            },
-            {
               name: '可编辑表格',
               name_en: 'EditTable',
               router: '/editable'
@@ -58,10 +43,10 @@ const mixins = {
           children: []
         },
         {
-          name: '魔幻立方',
-          name_en: 'Cube',
-          router: '/cube',
-          icon: 'el-icon-star-on',
+          name: '图表展示',
+          name_en: 'Charts',
+          router: '/charts',
+          icon: 'el-icon-picture',
           children: []
         },
         {

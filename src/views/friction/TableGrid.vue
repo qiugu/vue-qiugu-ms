@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import TableEdit from '../components/EditTable/TableEdit'
+import TableEdit from '@/components/EditTable/TableEdit'
 import { getEditorTable } from '@/services/table'
 
 export default {

@@ -122,6 +122,9 @@ export default {
       backupRow: {}
     }
   },
+  mounted () {
+    this.iniTableColumns()
+  },
   methods: {
     summaryMethod (param) {
       const { columns, data } = param
@@ -225,6 +228,11 @@ export default {
           type: 'success',
           message: '删除成功!'
         })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '取消'
+        })
       })
     },
     handleChange (val) {
@@ -242,9 +250,6 @@ export default {
       this.editIndex = 0
       this.isAddRow = true
     }
-  },
-  mounted () {
-    this.iniTableColumns()
   }
 }
 </script>

@@ -133,7 +133,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("~@/assets/sky.jpg") no-repeat;
+  background: url("~@/assets/images/sky.jpg") no-repeat;
   background-size: cover;
   #particles-js {
     position: absolute;

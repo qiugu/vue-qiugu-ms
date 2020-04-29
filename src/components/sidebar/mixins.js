@@ -4,97 +4,72 @@ const mixins = {
       menu: [
         {
           name: '控制台',
-          name_en: 'home',
+          name_en: 'Dashboard',
           router: '/index',
-          icon: 'el-icon-star-off',
-          children: []
+          icon: 'el-icon-s-home',
+          children: [
+            {
+              name: '预览',
+              name_en: 'Overview',
+              router: '/index'
+            }
+          ]
         },
         {
-          name: '项目管理',
-          name_en: 'Projects',
+          name: '项目模块',
+          name_en: 'Modules',
           router: '1',
-          icon: 'el-icon-time',
+          icon: 'el-icon-s-grid',
           children: [
             {
               name: '开发备忘',
               name_en: 'Notes',
-              router: '/about',
-              icon: 'el-icon-date'
-            },
-            {
-              name: '关于作者',
-              name_en: 'About',
-              router: '/author',
-              icon: 'el-icon-document'
+              router: '/about'
             },
             {
               name: '表单验证',
               name_en: 'Validate',
-              router: '/validate',
-              icon: 'el-icon-document'
-            }
-          ]
-        },
-        {
-          name: '基础表格',
-          name_en: 'BaseTable',
-          router: '2',
-          icon: 'el-icon-news',
-          children: [
+              router: '/validate'
+            },
             {
               name: '动态表格',
               name_en: 'DynamicTable',
-              router: '/dynamic',
-              icon: 'el-icon-edit-outline'
+              router: '/dynamic'
             },
             {
               name: '可编辑表格',
               name_en: 'EditTable',
-              router: '/editable',
-              icon: 'el-icon-edit-outline'
+              router: '/editable'
             }
           ]
         },
         {
-          name: '天气预报',
-          name_en: 'Weather',
-          router: '/weather',
-          icon: 'el-icon-picture-outline',
+          name: '视频播放',
+          name_en: 'Video',
+          router: '2',
+          icon: 'el-icon-video-camera-solid',
+          children: []
+        },
+        {
+          name: '文本编辑',
+          name_en: 'rich_text',
+          router: '3',
+          icon: 'el-icon-s-order',
           children: []
         },
         {
           name: '魔幻立方',
           name_en: 'Cube',
           router: '/cube',
-          icon: 'el-icon-menu',
+          icon: 'el-icon-star-on',
           children: []
         },
         {
           name: '权限测试',
           name_en: 'access',
           router: '/access',
-          icon: 'el-icon-setting',
+          icon: 'el-icon-warning',
           children: []
-        },
-        {
-          name: '富文本编辑',
-          name_en: 'rich_text',
-          router: '3',
-          icon: 'el-icon-service',
-          children: [
-            {
-              name: 'TinyMCE富文本编辑器',
-              name_en: 'tinymce',
-              router: '/teditor',
-              icon: 'el-icon-edit-outline'
-            },
-            {
-              name: 'wangEditor富文本编辑器',
-              name_en: 'wangeditor',
-              router: '/weditor',
-              icon: 'el-icon-edit-outline'
-            }
-          ]
         }
       ]
     }

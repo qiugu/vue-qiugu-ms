@@ -39,15 +39,6 @@ export const constRouterMap = [
         component: () => import(/* webpackChunkName: "About" */'@/views/About.vue')
       },
       {
-        path: '/author',
-        name: 'author',
-        meta: {
-          title: '关于作者',
-          keepAlive: false
-        },
-        component: () => import(/* webpackChunkName: "AboutAuthor" */'@/views/AboutAuthor.vue')
-      },
-      {
         path: '/weather',
         name: 'wether-fore',
         meta: {

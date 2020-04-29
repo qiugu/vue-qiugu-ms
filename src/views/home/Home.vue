@@ -4,7 +4,7 @@
       <el-col :lg="8">
         <el-card class="card-margin">
           <div slot="header" class="clearfix">
-            <img src="@/assets/img.jpg" alt="admin" />
+            <img src="@/assets/images/img.jpg" alt="admin" />
             <div class="userinfo">
               <h2>{{ admin }}</h2>
               <span>{{ role }}</span>

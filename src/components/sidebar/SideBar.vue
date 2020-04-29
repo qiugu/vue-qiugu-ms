@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar-wrap" :class="{ collapsed: toggleSideBar }">
     <div class="logo rythm twist1">
-      <img v-show="!toggleSideBar" src="@/assets/logo.png" style="height: 32px;margin-right: 10px;" alt="logo">
+      <img v-show="!toggleSideBar" src="@/assets/images/logo.png" style="height: 32px;margin-right: 10px;" alt="logo">
       <span>{{ toggleSideBar ? 'VUE' : 'AUTO VUE' }}</span>
     </div>
     <el-menu
@@ -30,7 +30,7 @@
             :index="child.router"
             :key="child.router"
           >
-            <i :class="child.icon"></i>
+            <i class="el-icon-document"></i>
             <span slot="title">{{
               langType === "en" ? child.name_en : child.name
             }}</span>
@@ -48,7 +48,7 @@
 
     <div class="animated bounceInDown imgWrap">
       <img
-        src="@/assets/little.gif"
+        src="@/assets/images/little.gif"
         height="60px"
         class="gif rythm pulse3"
         @click="toggleDance"

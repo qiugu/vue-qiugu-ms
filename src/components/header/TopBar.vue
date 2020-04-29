@@ -35,7 +35,7 @@
           </el-tooltip>
           <span class="btn-bell-badge" v-if="message"></span>
         </div>
-        <img src="@/assets/img.jpg" alt="zhaopian" class="author-img" />
+        <img src="@/assets/images/img.jpg" alt="zhaopian" class="author-img" />
 
         <el-dropdown @command="handleCommand" placement="top-end">
           <span class="el-dropdown-link animated fadeIn">

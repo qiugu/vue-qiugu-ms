@@ -74,7 +74,6 @@ const user = {
       return new Promise((resolve, reject) => {
         loginByUsername(username, userInfo.password)
           .then(response => {
-            console.log(response)
             if (response.code !== 200) {
               Notification({ title: '提示', message: response.msg, type: 'warning' })
               return

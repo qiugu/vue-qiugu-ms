@@ -42,7 +42,6 @@
             {{ userName }} <i class="el-icon-caret-bottom"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="personInfo">个人信息</el-dropdown-item>
             <el-dropdown-item>
               <a href="https://github.com/qiugu/vue-qg-ms" rel="nopener" class="github-link" target="_blank">项目仓库</a>
             </el-dropdown-item>
@@ -100,11 +99,10 @@ export default {
     handleCommand (command) {
       if (command === 'logout') {
         sessionStorage.clear()
-        this.$store.dispatch('permission/logout')
         bus.$emit('stopMusic')
+        // 退出需要刷新页面清空路由信息，否则会导致权限失效
         this.$router.push('/login')
-      } else if (command === 'personInfo') {
-        this.$router.push('/layout/about-author')
+        window.location.reload()
       }
     }
   },

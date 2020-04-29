@@ -9,10 +9,9 @@ router.beforeEach((to, from, next) => {
       next('/index')
     } else {
       if (store.getters.roles.length === 0) {
-        const roles = sessionStorage.getItem('roles')
-        store.dispatch('permission/generateRoute', { roles })
+        const roles = JSON.parse(sessionStorage.getItem('roles'))
+        store.dispatch('permission/generateRoute', roles)
           .then(() => {
-            console.log(store.getters.addRoutes[0].children.length)
             router.addRoutes(store.getters.addRoutes)
             next({ ...to, replace: true })
           })

@@ -18,7 +18,6 @@ function filterAsyncRouter (asyncRouter, roles) {
     }
     return false
   })
-  // console.log(accessRouters)
   return accessRouters
 }
 
@@ -41,23 +40,12 @@ const permission = {
   actions: {
     generateRoute ({ commit }, data) {
       return new Promise((resolve, reject) => {
-        const roles = []
-        roles.push(data.roles)
-        let accessRouters
-        console.log(roles.indexOf('admin') >= 0)
-        if (roles.indexOf('admin') >= 0) {
-          accessRouters = asyncRouterMap
-        } else {
-          accessRouters = filterAsyncRouter(asyncRouterMap, roles)
-        }
-        // console.log(accessRouters)
+        const accessRouters = filterAsyncRouter(asyncRouterMap, data)
         commit('SET_ROUTERS', accessRouters)
-        commit('SET_ROLES', roles)
+        console.log(accessRouters)
+        commit('SET_ROLES', data)
         resolve()
       })
-    },
-    logout ({ commit, state }) {
-      commit('SET_ROLES', [])
     }
   }
 }

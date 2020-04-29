@@ -89,6 +89,9 @@ const user = {
             })
             resolve(response)
           })
+          .catch(err => {
+            Notification({ title: '提示', message: err, type: 'warning' })
+          })
       })
     }
   }

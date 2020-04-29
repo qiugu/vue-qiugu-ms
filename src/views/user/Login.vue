@@ -34,7 +34,7 @@
           </el-row>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="login('form')">登录</el-button>
+          <el-button type="primary" :loading="loading" @click="login('form')">登录</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -71,6 +71,7 @@ export default {
         password: sessionStorage.password || 'guest'
       },
       isMemory: false,
+      loading: false,
       rules: {
         username: [
           {
@@ -91,21 +92,23 @@ export default {
   },
   methods: {
     login (formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          this.$store.dispatch('user/login', this.form).then(res => {
+      this.loading = true
+      setTimeout(() => {
+        this.$refs[formName].validate(async valid => {
+          if (valid) {
+            await this.$store.dispatch('user/login', this.form)
             this.$router.push({
               path: '/index'
             })
-          })
-        } else {
-          this.$message({
-            message: '请输入正确格式的账号密码',
-            type: 'warning'
-          })
-          return false
-        }
-      })
+          } else {
+            this.$message({
+              message: '请输入正确格式的账号密码',
+              type: 'warning'
+            })
+          }
+          this.loading = false
+        })
+      }, 3000)
     },
     openMsg: function () {
       console.log(process.env.BASE_URL)

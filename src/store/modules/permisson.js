@@ -42,7 +42,6 @@ const permission = {
       return new Promise((resolve, reject) => {
         const accessRouters = filterAsyncRouter(asyncRouterMap, data)
         commit('SET_ROUTERS', accessRouters)
-        console.log(accessRouters)
         commit('SET_ROLES', data)
         resolve()
       })

@@ -1,6 +1,8 @@
 #! /bin/bash
 
 cd ../
+npm uninstall mockjs
+npm i mockjs -S
 npm run build
 
 git add .

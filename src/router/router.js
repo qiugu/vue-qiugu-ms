@@ -78,6 +78,6 @@ export const asyncRouterMap = [
 ]
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   routes: constRouterMap
 })

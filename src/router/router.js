@@ -46,6 +46,15 @@ export const constRouterMap = [
           title: '图表',
           keepAlive: false
         }
+      },
+      {
+        path: '/video',
+        name: 'video',
+        component: () => import(/* webpackChunkName: "charts" */'@/views/video/VideoPlay.vue'),
+        meta: {
+          title: '视频',
+          keepAlive: false
+        }
       }
     ]
   }

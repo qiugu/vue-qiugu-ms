@@ -73,12 +73,12 @@ export default {
   },
   computed: {
     isCollapse () {
-      return this.$store.state.isCollapse
+      return this.$store.state.app.isCollapse
     }
   },
   mounted () {
     if (document.body.clientWidth < 900) {
-      this.$store.commit('toggleSiderBar')
+      this.$store.commit('app/toggleSiderBar')
     }
   },
   watch: {
@@ -88,7 +88,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['toggleSiderBar']),
+    ...mapMutations('app', ['toggleSiderBar']),
     toggleLanguage () {
       const locale = this.$i18n.locale
       if (locale === 'zh') {

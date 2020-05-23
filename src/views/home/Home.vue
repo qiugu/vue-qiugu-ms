@@ -117,7 +117,7 @@ export default {
         this.title = res.result.title
         this.todos = res.result.todos
         this.options = res.result.lines
-        this.$store.commit('user/SET_TODO', this.todos)
+        this.$store.commit('app/set_todo', this.todos)
       }
     }
   }

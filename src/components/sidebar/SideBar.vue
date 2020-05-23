@@ -75,7 +75,7 @@ export default {
   },
   computed: {
     toggleSideBar () {
-      return this.$store.state.isCollapse
+      return this.$store.state.app.isCollapse
     },
     langType () {
       return this.$i18n.locale

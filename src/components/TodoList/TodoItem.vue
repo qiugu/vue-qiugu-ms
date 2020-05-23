@@ -52,7 +52,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('user', [
+    ...mapActions('app', [
       'editTodo',
       // 点击复选框，改变事项的完成状态
       'toggleTodo',

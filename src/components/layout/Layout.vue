@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     isCollapse () {
-      return this.$store.state.isCollapse ? '64px' : '256px'
+      return this.$store.state.app.isCollapse ? '64px' : '256px'
     },
     headerWidth () {
       return this.tagsVisible ? '90px' : '60px'

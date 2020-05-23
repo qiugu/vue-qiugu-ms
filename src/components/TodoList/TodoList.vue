@@ -97,11 +97,11 @@ export default {
     capitalize: s => s.charAt(0).toUpperCase() + s.slice(1)
   },
   methods: {
-    ...mapActions('user', ['toggleAll', 'clearCompleted']),
+    ...mapActions('app', ['toggleAll', 'clearCompleted']),
     addTodo (e) {
       const text = e.target.value
       if (text.trim()) {
-        this.$store.dispatch('user/addTodo', text)
+        this.$store.dispatch('app/addTodo', text)
       }
       e.target.value = ''
     }

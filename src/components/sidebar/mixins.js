@@ -33,7 +33,13 @@ const mixins = {
           name_en: 'Video',
           router: '2',
           icon: 'el-icon-video-camera-solid',
-          children: []
+          children: [
+            {
+              name: '视频播放',
+              name_en: 'video',
+              router: '/video'
+            }
+          ]
         },
         {
           name: '文本编辑',

@@ -1,4 +1,13 @@
+const path = require('path')
+const glob = require('glob')
+
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+// 打包速度分析插件
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
+
+// 去除无用css 插件
+const PurgecssPlugin = require('purgecss-webpack-plugin')
 
 // 定义压缩文件类型
 const productionGzipExtensions = ['js', 'css']
@@ -16,15 +25,32 @@ module.exports = {
 
   // 高级的方式
   configureWebpack: config => {
+    config.plugins.push(
+      new CompressionWebpackPlugin({
+        filename: '[path].gz[query]',
+        algorithm: 'gzip',
+        test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
+        threshold: 10240,
+        minRatio: 0.8
+      })
+    )
+
+    config.plugins.push(
+      new PurgecssPlugin({
+        paths: glob.sync(`${path.join(__dirname, './src')}/**/*`, { nodir: true })
+      })
+    )
+
+    config.plugins.push(
+      new SpeedMeasurePlugin()
+    )
+
     if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
       // config.externals = externals
+
       config.plugins.push(
-        new CompressionWebpackPlugin({
-          filename: '[path].gz[query]',
-          algorithm: 'gzip',
-          test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
-          threshold: 10240,
-          minRatio: 0.8
+        new BundleAnalyzerPlugin({
+          openAnalyzer: false
         })
       )
     }
